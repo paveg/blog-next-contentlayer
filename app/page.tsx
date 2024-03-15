@@ -1,7 +1,13 @@
 import { allPosts } from "@/.contentlayer/generated"
+import { PostNotFound } from "@/components/post-not-found"
 import Link from "next/link"
 
 export default function Home() {
+  console.info(allPosts.length)
+  if (allPosts.length === 0) {
+    return <PostNotFound />
+  }
+
   return (
     <div className="prose dark:prose-invert">
       {allPosts.map((post) => (

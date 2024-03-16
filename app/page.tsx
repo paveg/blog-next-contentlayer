@@ -1,6 +1,6 @@
+import Link from "next/link"
 import { allPosts } from "@/.contentlayer/generated"
 import { PostNotFound } from "@/components/post-not-found"
-import Link from "next/link"
 
 export default function Home() {
   console.info(allPosts.length)

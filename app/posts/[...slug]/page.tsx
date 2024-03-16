@@ -51,19 +51,23 @@ export default async function PostPage({ params }: PostProps) {
   }
 
   // TODO: Improve tailwindCSS
+  // TODO: Add post date and the hero image
   return (
-    <article className="prose py-6 dark:prose-invert">
-      <h1 className="mb-2">{post.title}</h1>
+    <article className="prose py-6 transition-colors dark:prose-invert">
+      <h1 className="mb-4">{post.title}</h1>
+      {post.date && (
+        <p className="text-sm text-slate-700 dark:text-slate-200">{post.date}... TODO: formatting</p>
+      )}
       {post.description && (
         <p className="mt-0 text-xl text-slate-700 dark:text-slate-200">
           {post.description}
         </p>
       )}
       <hr className="my-4" />
-      <div className="pb-8 transition-colors lg:grid lg:grid-cols-4 lg:gap-x-6"
+      <div className="lg:grid lg:grid-cols-4 lg:gap-x-6"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
-        <div className="pb-8 pt-10 transition-colors lg:col-span-3">
+        <div className="py-4 lg:col-span-3">
           <Mdx code={post.body.code} />
         </div>
         <aside>

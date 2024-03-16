@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`min-h-screen bg-white text-slate-900 antialiased font-sans dark:bg-slate-950 dark:text-slate-50 ${fontSans.variable}`}
+        className={`min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${fontSans.variable}`}
       >
         <Providers>
           <div className="mx-auto max-w-2xl px-4 py-10">

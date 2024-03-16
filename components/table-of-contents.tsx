@@ -1,9 +1,8 @@
 'use client';
 import GithubSlugger from 'github-slugger';
-import { Button } from './ui/button';
-import { cn } from '@/lib/utils';
 import { useEffect, useRef, useState } from 'react';
-import { set } from 'date-fns';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 type Props = {
   source: string;

@@ -2,10 +2,12 @@ import '@/styles/codes/prism-dracula.css';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArticleJsonLd } from 'next-seo';
+import { ReaderIcon } from '@radix-ui/react-icons';
 import { allPosts } from 'contentlayer/generated';
 import { Mdx } from '@/components/mdx-components';
 import { TableOfContents } from '@/components/table-of-contents';
 import { cfg } from '@/utils/constants';
+import { CategoryBadge } from '@/components/category-badge';
 
 interface PostProps {
   params: {
@@ -79,12 +81,25 @@ export default async function PostPage({ params }: PostProps) {
         authorName={cfg.author}
         description={post?.description ?? ''}
       />
-      <h1 className="mb-4">{post.title}</h1>
-      {post.date && (
-        <p className="text-sm text-slate-700 dark:text-slate-200">
-          {formatDate(post.date)}
-        </p>
-      )}
+      <h1>{post.title}</h1>
+      <div className="flex gap-4 align-middle text-sm">
+        {post.date && (
+          <span className="text-slate-700 dark:text-slate-200">
+            {formatDate(post.date)}
+          </span>
+        )}
+        <span className="text-slate-700 dark:text-slate-200">
+          <CategoryBadge badgeString={post.category} />
+        </span>
+        {post.readingTime && (
+          <div className="flex gap-2">
+            <ReaderIcon className="h-4 w-4">{post.readingTime.text}</ReaderIcon>
+            <span className="text-slate-700 dark:text-slate-200">
+              {post.readingTime.text}
+            </span>
+          </div>
+        )}
+      </div>
       <hr className="my-4" />
       <div
         className="lg:grid lg:grid-cols-4 lg:gap-x-6"

@@ -2,9 +2,11 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
+import readingTime from 'reading-time';
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
+  readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
   slug: {
     type: 'string',
     resolve: (doc) => `/${doc._raw.flattenedPath}`,
@@ -46,6 +48,10 @@ export const Post = defineDocumentType(() => ({
     date: {
       type: 'date',
       required: true,
+    },
+    category: {
+      type: 'string',
+      required: false,
     },
   },
   computedFields,

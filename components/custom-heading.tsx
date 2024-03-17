@@ -1,18 +1,25 @@
 import { Link2Icon } from '@radix-ui/react-icons';
-import React from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-type CustomHeadingProps = React.ComponentPropsWithRef<
-  'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-> & { Component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' };
+type HeadingProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>;
 
-function CustomHeading({
+type CustomHeadingProps = HeadingProps & {
+  Component: keyof JSX.IntrinsicElements;
+};
+
+const CustomHeading = ({
   Component,
   id,
   children,
   ...others
-}: CustomHeadingProps) {
+}: CustomHeadingProps) => {
+  const ComponentType = Component as any; // Cast to any to bypass type checking
+
   return (
-    <Component
+    <ComponentType
       id={id}
       className="group scroll-mt-24 whitespace-pre-wrap"
       {...others}
@@ -25,25 +32,25 @@ function CustomHeading({
       >
         <Link2Icon className="h-4 w-4" />
       </a>
-    </Component>
+    </ComponentType>
   );
-}
+};
 
-export const CustomH1 = (props: React.ComponentPropsWithRef<'h1'>) => (
+export const CustomH1 = (props: HeadingProps) => (
   <CustomHeading Component="h1" {...props} />
 );
-export const CustomH2 = (props: React.ComponentPropsWithRef<'h2'>) => (
+export const CustomH2 = (props: HeadingProps) => (
   <CustomHeading Component="h2" {...props} />
 );
-export const CustomH3 = (props: React.ComponentPropsWithRef<'h3'>) => (
+export const CustomH3 = (props: HeadingProps) => (
   <CustomHeading Component="h3" {...props} />
 );
-export const CustomH4 = (props: React.ComponentPropsWithRef<'h4'>) => (
+export const CustomH4 = (props: HeadingProps) => (
   <CustomHeading Component="h4" {...props} />
 );
-export const CustomH5 = (props: React.ComponentPropsWithRef<'h5'>) => (
+export const CustomH5 = (props: HeadingProps) => (
   <CustomHeading Component="h5" {...props} />
 );
-export const CustomH6 = (props: React.ComponentPropsWithRef<'h6'>) => (
+export const CustomH6 = (props: HeadingProps) => (
   <CustomHeading Component="h6" {...props} />
 );

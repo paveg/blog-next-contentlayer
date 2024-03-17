@@ -14,8 +14,19 @@ const fontSans = FontSans({
 });
 
 export const metadata = {
+  metadataBase: new URL(cfg.siteURL),
+  url: cfg.siteURL,
   title: cfg.siteTitle,
   description: cfg.siteDescription,
+  openGraph: {
+    siteName: cfg.siteTitle,
+    title: cfg.siteTitle,
+    description: 'The logs of a software engineer whose name is Funai.',
+    locale: 'ja_JP',
+    type: 'website',
+    url: cfg.siteURL,
+    images: [],
+  },
 };
 
 interface RootLayoutProps {

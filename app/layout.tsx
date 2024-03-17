@@ -1,6 +1,7 @@
 import Link from "next/link"
 import "@/styles/globals.css"
 import { Inter as FontSans } from "next/font/google"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Providers } from "@/components/providers"
 import { Analytics } from "@/components/analytics"
 import { ModeToggle } from "@/components/mode-toggle"
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <main>{children}</main>
           </div>
           <Analytics />
+          <SpeedInsights />
           <TailwindIndicator />
         </Providers>
       </body>

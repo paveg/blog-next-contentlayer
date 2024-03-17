@@ -1,7 +1,6 @@
-
-const twitterLink = 'https://twitter.com/paveg_'
-const gitHubLink = 'https://github.com/paveg/blog-next-contentlayer'
-const instagramLink = 'https://www.instagram.com/funa1y'
+const twitterLink = 'https://twitter.com/paveg_';
+const gitHubLink = 'https://github.com/paveg/blog-next-contentlayer';
+const instagramLink = 'https://www.instagram.com/funa1y';
 
 export const cfg = {
   siteTitle: 'Funai Log',
@@ -11,6 +10,6 @@ export const cfg = {
   links: {
     twitter: twitterLink,
     github: gitHubLink,
-    instagram: instagramLink
-  }
-}
+    instagram: instagramLink,
+  },
+};

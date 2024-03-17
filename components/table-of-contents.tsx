@@ -80,9 +80,7 @@ export const TableOfContents = ({ source }: Props) => {
 
   return (
     <div className="mt-10">
-      <p className="mb-3 text-lg font-semibold transition-colors">
-        Contents
-      </p>
+      <p className="mb-3 text-lg font-semibold transition-colors">Contents</p>
       <div className="flex flex-col items-start justify-start">
         {headings.map((heading, index) => {
           return (

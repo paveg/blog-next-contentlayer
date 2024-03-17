@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { ModeToggle } from "@/components/mode-toggle"
+import Link from 'next/link';
+import { ModeToggle } from '@/components/mode-toggle';
 
 export const LayoutHeader = () => {
   return (
@@ -12,5 +12,5 @@ export const LayoutHeader = () => {
         </nav>
       </div>
     </header>
-  )
-}
+  );
+};

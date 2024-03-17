@@ -2,12 +2,11 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    "prettier",
-    "plugin:tailwindcss/recommended"
+    "plugin:tailwindcss/recommended",
+    "prettier"
   ],
-  "plugins": [
-    "unused-imports"
-  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["unused-imports"],
   "rules": {
     "import/order": "error",
     "unused-imports/no-unused-imports": "error"

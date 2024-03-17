@@ -1,10 +1,10 @@
-import Link from "next/link"
-import { allPosts } from "@/.contentlayer/generated"
-import { PostNotFound } from "@/components/post-not-found"
+import Link from 'next/link';
+import { allPosts } from '@/.contentlayer/generated';
+import { PostNotFound } from '@/components/post-not-found';
 
 export default function Home() {
   if (allPosts.length === 0) {
-    return <PostNotFound />
+    return <PostNotFound />;
   }
 
   return (
@@ -18,5 +18,5 @@ export default function Home() {
         </article>
       ))}
     </div>
-  )
+  );
 }

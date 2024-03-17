@@ -1,7 +1,14 @@
-import { useMDXComponent } from "next-contentlayer/hooks"
-import { CustomLink } from "./custom-link";
-import { CustomImage } from "./custom-image";
-import { CustomH1, CustomH2, CustomH3, CustomH4, CustomH5, CustomH6 } from "./custom-heading";
+import { useMDXComponent } from 'next-contentlayer/hooks';
+import { CustomLink } from './custom-link';
+import { CustomImage } from './custom-image';
+import {
+  CustomH1,
+  CustomH2,
+  CustomH3,
+  CustomH4,
+  CustomH5,
+  CustomH6,
+} from './custom-heading';
 
 const components = {
   CustomImage,
@@ -11,15 +18,15 @@ const components = {
   CustomH4,
   CustomH5,
   CustomH6,
-  CustomLink
-}
+  CustomLink,
+};
 
 interface MdxProps {
-  code: string
+  code: string;
 }
 
 export function Mdx({ code }: MdxProps) {
-  const Component = useMDXComponent(code)
+  const Component = useMDXComponent(code);
 
-  return <Component components={components} />
+  return <Component components={components} />;
 }

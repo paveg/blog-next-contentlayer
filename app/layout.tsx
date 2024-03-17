@@ -1,25 +1,25 @@
-import "@/styles/globals.css"
-import { Inter as FontSans } from "next/font/google"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Providers } from "@/components/providers"
-import { Analytics } from "@/components/analytics"
-import { cfg } from "@/utils/constants"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { LayoutFooter } from "@/components/layouts/footer"
-import { LayoutHeader } from "@/components/layouts/header"
+import '@/styles/globals.css';
+import { Inter as FontSans } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Providers } from '@/components/providers';
+import { Analytics } from '@/components/analytics';
+import { cfg } from '@/utils/constants';
+import { TailwindIndicator } from '@/components/tailwind-indicator';
+import { LayoutFooter } from '@/components/layouts/footer';
+import { LayoutHeader } from '@/components/layouts/header';
 
 const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans"
-})
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
 export const metadata = {
   title: cfg.siteTitle,
   description: cfg.siteDescription,
-}
+};
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -40,5 +40,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </Providers>
       </body>
     </html>
-  )
+  );
 }

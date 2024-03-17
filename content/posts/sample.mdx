@@ -3,6 +3,7 @@ title: Sample
 description: Sample post
 date: 2020-01-01
 ---
+
 # Heading(H1)
 
 ## H2
@@ -17,20 +18,22 @@ date: 2020-01-01
 
 - [Link to Google](https://www.google.com)
 - [Internal Link](/about)
-- [Link with Title](https://www.google.com "Google")
+- [Link with Title](https://www.google.com 'Google')
 
 ## Codes
 
 ```tsx
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export const SampleComponent = ({ children }: Props) => {
-  return <>
-    <h1>Sample</h1>
-    <div>{children}</div>
-  </>;
+  return (
+    <>
+      <h1>Sample</h1>
+      <div>{children}</div>
+    </>
+  );
 };
 ```
 
@@ -55,11 +58,11 @@ This is a `code` inline.
   - Item 2-2
 
 1. Item 1
-    1. Item 1-1
-    2. Item 1-2
+   1. Item 1-1
+   2. Item 1-2
 2. Item 2
-    1. Item 2-1
-    2. Item 2-2
+   1. Item 2-1
+   2. Item 2-2
 
 ## Images
 
@@ -71,10 +74,9 @@ This is a `code` inline.
 
 ## Emphasis
 
-*italic*
+_italic_
 
 **bold**
-
 
 ## Horizontal Rule
 

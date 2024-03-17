@@ -3,7 +3,6 @@ import { allPosts } from "@/.contentlayer/generated"
 import { PostNotFound } from "@/components/post-not-found"
 
 export default function Home() {
-  console.info(allPosts.length)
   if (allPosts.length === 0) {
     return <PostNotFound />
   }

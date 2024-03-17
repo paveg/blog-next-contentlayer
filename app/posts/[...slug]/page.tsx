@@ -76,8 +76,8 @@ export default async function PostPage({ params }: PostProps) {
         // TODO: update published and revised
         datePublished={post.date}
         dateModified={post.date}
-        authorName={cfg.authorName}
-        description={post.description}
+        authorName={cfg.author}
+        description={post?.description ?? ''}
       />
       <h1 className="mb-4">{post.title}</h1>
       {post.date && (

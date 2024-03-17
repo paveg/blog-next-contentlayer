@@ -45,6 +45,7 @@ export async function generateStaticParams(): Promise<PageProps['params'][]> {
 }
 
 export default async function PagePage({ params }: PageProps) {
+  const pagePublishedDate = '2024-03-17'
   const page = await getPageFromParams(params);
 
   if (!page) {
@@ -60,8 +61,9 @@ export default async function PagePage({ params }: PageProps) {
         url={fullUrl}
         title={page.title}
         images={[]}
-        authorName={cfg.authorName}
-        description={page.description}
+        datePublished={pagePublishedDate}
+        authorName={cfg.author}
+        description={page?.description ?? ''}
       />
 
       <h1>{page.title}</h1>

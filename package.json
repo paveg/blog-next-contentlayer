@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "preview": "next build && next start",
     "start": "next start",
     "lint": "next lint --config .eslintrc.json",

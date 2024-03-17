@@ -1,10 +1,11 @@
+import '@/styles/codes/prism-dracula.css';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { ArticleJsonLd } from 'next-seo';
 import { allPosts } from 'contentlayer/generated';
-
 import { Mdx } from '@/components/mdx-components';
 import { TableOfContents } from '@/components/table-of-contents';
-import '@/styles/codes/prism-dracula.css';
+import { cfg } from '@/utils/constants';
 
 interface PostProps {
   params: {
@@ -61,10 +62,23 @@ export default async function PostPage({ params }: PostProps) {
     notFound();
   }
 
+  const fullUrl = cfg.siteURL + post.slug;
+
   // TODO: Improve tailwindCSS
   // TODO: Add post date and the hero image
   return (
     <article className="prose py-6 transition-colors dark:prose-invert">
+      <ArticleJsonLd
+        useAppDir={true}
+        url={fullUrl}
+        title={post.title}
+        images={[]}
+        // TODO: update published and revised
+        datePublished={post.date}
+        dateModified={post.date}
+        authorName={cfg.authorName}
+        description={post.description}
+      />
       <h1 className="mb-4">{post.title}</h1>
       {post.date && (
         <p className="text-sm text-slate-700 dark:text-slate-200">

@@ -1,12 +1,12 @@
-import Link from "next/link"
 import "@/styles/globals.css"
 import { Inter as FontSans } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Providers } from "@/components/providers"
 import { Analytics } from "@/components/analytics"
-import { ModeToggle } from "@/components/mode-toggle"
 import { cfg } from "@/utils/constants"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { LayoutFooter } from "@/components/layouts/footer"
+import { LayoutHeader } from "@/components/layouts/header"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,16 +30,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <Providers>
           <div className="mx-auto max-w-2xl px-4 py-10">
-            <header>
-              <div className="flex items-center justify-between">
-                <ModeToggle />
-                <nav className="ml-auto space-x-6 text-sm font-medium">
-                  <Link href="/">Home</Link>
-                  <Link href="/about">About</Link>
-                </nav>
-              </div>
-            </header>
+            <LayoutHeader />
             <main>{children}</main>
+            <LayoutFooter />
           </div>
           <Analytics />
           <SpeedInsights />

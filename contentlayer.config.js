@@ -3,6 +3,8 @@ import rehypeSlug from 'rehype-slug';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
 import readingTime from 'reading-time';
+import remarkFootnotes from 'remark-footnotes';
+import remarkGfm from 'remark-gfm';
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -61,6 +63,12 @@ export default makeSource({
   contentDirPath: './content',
   documentTypes: [Post, Page],
   mdx: {
+    remarkPlugins: [
+      // remark-gfm 4.0.0 has an issue to render table.
+      // @see https://github.com/remarkjs/remark-gfm/issues/57
+      remarkGfm,
+      [remarkFootnotes, { inlineNotes: true }],
+    ],
     rehypePlugins: [
       rehypeSlug,
       rehypeCodeTitles,

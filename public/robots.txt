@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.funailog.com
+
+# Sitemaps
+Sitemap: https://www.funailog.com/sitemap.xml

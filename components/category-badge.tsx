@@ -4,7 +4,7 @@ type Props = {
   badgeString?: string;
 };
 
-type BadgeTypes =
+type CategoryTypes =
   | 'Technology'
   | 'Programming'
   | 'Productivity'
@@ -12,7 +12,7 @@ type BadgeTypes =
   | 'Gadgets'
   | 'Other';
 
-const toPascalCase = (str: string) => {
+const toPascalCase = (str: string): CategoryTypes => {
   return [str]
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('');

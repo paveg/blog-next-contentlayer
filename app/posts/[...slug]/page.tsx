@@ -61,7 +61,9 @@ export async function generateStaticParams(): Promise<PostProps['params'][]> {
 export default async function PostPage({ params }: PostProps) {
   const post = await getPostFromParams(params);
 
-  if (!post) {
+  const isNotPublished =
+    process.env.NODE_ENV === 'production' && !post.isPublished;
+  if (!post || isNotPublished) {
     notFound();
   }
 

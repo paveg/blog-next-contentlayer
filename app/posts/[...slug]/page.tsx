@@ -83,33 +83,42 @@ export default async function PostPage({ params }: PostProps) {
         authorName={cfg.author}
         description={post?.description ?? ''}
       />
-      <h1>{post.title}</h1>
-      <div className="flex gap-4 align-baseline text-sm">
-        {post.lastUpdatedDate ? (
+      <h1 className="mb-4 scroll-m-20 text-3xl font-extrabold tracking-tight md:mb-8 lg:text-5xl">
+        {post.title}
+      </h1>
+      <div className="flex flex-row gap-2 text-sm">
+        <div className="flex-1">
           <span className="text-slate-700 dark:text-slate-200">
-            Last updated date {formatDate(post.lastUpdatedDate)}
+            <CategoryBadge badgeString={post.category} />
           </span>
-        ) : (
-          <span className="text-slate-700 dark:text-slate-200">
-            Published date {formatDate(post.publishedDate)}
-          </span>
-        )}
-        <span className="text-slate-700 dark:text-slate-200">
-          <CategoryBadge badgeString={post.category} />
-        </span>
-        {post.readingTime && (
-          <div className="flex gap-2">
-            <ReaderIcon className="h-4 w-4">{post.readingTime.text}</ReaderIcon>
+        </div>
+        <div id="container" className="text-right">
+          {post.lastUpdatedDate ? (
             <span className="text-slate-700 dark:text-slate-200">
-              {post.readingTime.text}
+              Last updated {formatDate(post.lastUpdatedDate)}
             </span>
-          </div>
-        )}
+          ) : (
+            <span className="text-slate-700 dark:text-slate-200">
+              Published {formatDate(post.publishedDate)}
+              <br />
+            </span>
+          )}
+        </div>
       </div>
       {post.heroImage && (
         <CustomImage src={post.heroImage} alt="A hero image" />
       )}
       <hr className="my-4" />
+      {post.readingTime && (
+        <div className="flex items-center justify-end gap-1 text-sm">
+          <ReaderIcon className="my-0 h-4 w-4">
+            {post.readingTime.text}
+          </ReaderIcon>
+          <span className="text-slate-700 dark:text-slate-200">
+            {post.readingTime.text}
+          </span>
+        </div>
+      )}
       <div
         className="lg:grid lg:grid-cols-4 lg:gap-x-6"
         style={{ gridTemplateRows: 'auto 1fr' }}

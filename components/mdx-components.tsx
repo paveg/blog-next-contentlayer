@@ -19,6 +19,9 @@ const components = {
   h5: CustomH5,
   h6: CustomH6,
   a: CustomLink,
+  p: (props: any) => (
+    <p className="leading-7 [&:not(:first-child)]:mt-6" {...props} />
+  ),
 };
 
 interface MdxProps {

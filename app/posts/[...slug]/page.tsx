@@ -2,7 +2,7 @@ import '@/styles/codes/prism-dracula.css';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArticleJsonLd } from 'next-seo';
-import { ReaderIcon } from '@radix-ui/react-icons';
+import { ClockIcon } from '@radix-ui/react-icons';
 import { allPosts } from 'contentlayer/generated';
 import { Mdx } from '@/components/mdx-components';
 import { TableOfContents } from '@/components/table-of-contents';
@@ -111,9 +111,9 @@ export default async function PostPage({ params }: PostProps) {
       <hr className="my-4" />
       {post.readingTime && (
         <div className="flex items-center justify-end gap-1 text-sm">
-          <ReaderIcon className="my-0 h-4 w-4">
+          <ClockIcon className="my-0 h-4 w-4">
             {post.readingTime.text}
-          </ReaderIcon>
+          </ClockIcon>
           <span className="text-slate-700 dark:text-slate-200">
             {post.readingTime.text}
           </span>

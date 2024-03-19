@@ -1,6 +1,7 @@
 'use client';
 import GithubSlugger from 'github-slugger';
 import { useEffect, useRef, useState } from 'react';
+import { ReaderIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -80,7 +81,10 @@ export const TableOfContents = ({ source }: Props) => {
 
   return (
     <div className="mt-10">
-      <p className="mb-3 text-lg font-semibold transition-colors">Contents</p>
+      <div className="mb-3 flex items-center gap-1.5">
+        <ReaderIcon className="h-4 w-4" />
+        <span className="text-lg font-semibold transition-colors">Outline</span>
+      </div>
       <div className="flex flex-col items-start justify-start">
         {headings.map((heading, index) => {
           return (

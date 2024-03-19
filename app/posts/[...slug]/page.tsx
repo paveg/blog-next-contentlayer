@@ -8,6 +8,7 @@ import { Mdx } from '@/components/mdx-components';
 import { TableOfContents } from '@/components/table-of-contents';
 import { cfg } from '@/utils/constants';
 import { CategoryBadge } from '@/components/category-badge';
+import { CustomImage } from '@/components/custom-image';
 
 interface PostProps {
   params: {
@@ -75,17 +76,22 @@ export default async function PostPage({ params }: PostProps) {
         url={fullUrl}
         title={post.title}
         images={[]}
-        // TODO: update published and revised
-        datePublished={post.date}
-        dateModified={post.date}
+        datePublished={post.publishedDate}
+        dateModified={
+          post.lastUpdatedDate ? post.lastUpdatedDate : post.publishedDate
+        }
         authorName={cfg.author}
         description={post?.description ?? ''}
       />
       <h1>{post.title}</h1>
-      <div className="flex gap-4 align-middle text-sm">
-        {post.date && (
+      <div className="flex gap-4 align-baseline text-sm">
+        {post.lastUpdatedDate ? (
           <span className="text-slate-700 dark:text-slate-200">
-            {formatDate(post.date)}
+            Last updated date {formatDate(post.lastUpdatedDate)}
+          </span>
+        ) : (
+          <span className="text-slate-700 dark:text-slate-200">
+            Published date {formatDate(post.publishedDate)}
           </span>
         )}
         <span className="text-slate-700 dark:text-slate-200">
@@ -100,6 +106,9 @@ export default async function PostPage({ params }: PostProps) {
           </div>
         )}
       </div>
+      {post.heroImage && (
+        <CustomImage src={post.heroImage} alt="A hero image" />
+      )}
       <hr className="my-4" />
       <div
         className="lg:grid lg:grid-cols-4 lg:gap-x-6"

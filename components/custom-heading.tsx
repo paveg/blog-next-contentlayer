@@ -21,7 +21,7 @@ const CustomHeading = ({
   return (
     <ComponentType
       id={id}
-      className="group scroll-mt-24 whitespace-pre-wrap"
+      className="group scroll-m-20 whitespace-pre-wrap"
       {...others}
     >
       <span className="mr-2">{children}</span>

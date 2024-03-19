@@ -17,7 +17,7 @@ export const LayoutFooter = () => {
     <footer>
       <div className="p-4 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-          <p className="text-sm text-slate-700 dark:text-slate-200">
+          <p className="text-xs text-muted-foreground md:text-sm">
             &copy; {startYear}-{today.getFullYear()} {cfg.author}. All rights
             reserved.
           </p>

@@ -12,20 +12,39 @@ const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 });
+const url = cfg.siteURL;
+const siteName = cfg.siteTitle;
+const description = cfg.siteDescription;
 
 export const metadata = {
-  metadataBase: new URL(cfg.siteURL),
-  url: cfg.siteURL,
-  title: cfg.siteTitle,
+  metadataBase: url,
+  url,
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
   description: cfg.siteDescription,
   openGraph: {
-    siteName: cfg.siteTitle,
-    title: cfg.siteTitle,
-    description: 'The logs of a software engineer whose name is Funai.',
+    siteName,
+    title: siteName,
+    description,
     locale: 'ja_JP',
     type: 'website',
-    url: cfg.siteURL,
+    url,
     images: [],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteName,
+    description,
+    site: '@paveg_',
+    creator: '@paveg_',
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+  alternates: {
+    canonical: url,
   },
 };
 
@@ -35,7 +54,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ja" suppressHydrationWarning>
       <body
         className={`min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${fontSans.variable}`}
       >

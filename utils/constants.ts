@@ -5,7 +5,7 @@ const instagramLink = 'https://www.instagram.com/funa1y';
 export const cfg = {
   siteTitle: 'Funai Log',
   siteURL: 'https://www.funailog.com',
-  siteDescription: 'TBD',
+  siteDescription: 'The logs of a software engineer whose name is Funai.',
   author: 'Ryota Ikezawa',
   links: {
     twitter: twitterLink,

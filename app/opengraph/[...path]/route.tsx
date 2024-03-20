@@ -3,10 +3,6 @@ import { ImageResponse } from 'next/server';
 import { allPosts } from '@/.contentlayer/generated';
 
 export const runtime = 'edge';
-export const size = {
-  width: 1200,
-  height: 630,
-};
 export const contentType = 'image/png';
 
 export async function GET(request, { params }) {
@@ -35,7 +31,6 @@ export async function GET(request, { params }) {
     ),
     {
       contentType,
-      ...size,
       fonts: [],
     }
   );

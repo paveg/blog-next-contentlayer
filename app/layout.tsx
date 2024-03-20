@@ -12,20 +12,35 @@ const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 });
+const url = cfg.siteURL;
+const siteName = cfg.siteTitle;
+const description = cfg.siteDescription;
 
 export const metadata = {
-  metadataBase: new URL(cfg.siteURL),
-  url: cfg.siteURL,
-  title: cfg.siteTitle,
+  metadataBase: url,
+  url,
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
   description: cfg.siteDescription,
   openGraph: {
-    siteName: cfg.siteTitle,
-    title: cfg.siteTitle,
-    description: 'The logs of a software engineer whose name is Funai.',
+    siteName,
+    title: siteName,
+    description,
     locale: 'ja_JP',
     type: 'website',
-    url: cfg.siteURL,
+    url,
     images: [],
+  },
+  twitter: {
+    title: siteName,
+    description,
+    site: '@paveg_',
+    creator: '@paveg_',
+  },
+  alternates: {
+    canonical: url,
   },
 };
 

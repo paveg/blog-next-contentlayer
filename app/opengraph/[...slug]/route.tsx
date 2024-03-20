@@ -26,7 +26,6 @@ export const GET = async (request: NextRequest, { params }: Props) => {
   return new ImageResponse(
     (
       <div
-        alt={alt}
         style={{
           fontSize: 72,
           background: 'white',

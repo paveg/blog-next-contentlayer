@@ -3,7 +3,6 @@ import { ImageResponse } from 'next/server';
 import { allPosts } from '@/.contentlayer/generated';
 
 export const runtime = 'edge';
-export const contentType = 'image/png';
 
 export async function GET(request, { params }) {
   const slug = params.path.join('/');
@@ -29,9 +28,5 @@ export async function GET(request, { params }) {
         {post.title}
       </div>
     ),
-    {
-      contentType,
-      fonts: [],
-    }
   );
 }

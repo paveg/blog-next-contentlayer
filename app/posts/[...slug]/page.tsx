@@ -49,6 +49,18 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      images: [
+        {
+          type: 'image/png',
+          width: 1200,
+          height: 630,
+          url: `/opengraph/${post.slug}`,
+        },
+      ],
+    },
   };
 }
 
@@ -79,11 +91,7 @@ export default async function PostPage({ params }: PostProps) {
         useAppDir={true}
         url={fullUrl}
         title={post.title}
-        images={[
-          post.heroImage
-            ? cfg.siteURL + post.heroImage
-            : `${cfg.siteURL}/default-image.png`,
-        ]}
+        images={[]}
         datePublished={post.publishedDate}
         dateModified={
           post.lastUpdatedDate ? post.lastUpdatedDate : post.publishedDate

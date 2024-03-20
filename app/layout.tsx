@@ -34,10 +34,14 @@ export const metadata = {
     images: [],
   },
   twitter: {
+    card: 'summary_large_image',
     title: siteName,
     description,
     site: '@paveg_',
     creator: '@paveg_',
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   alternates: {
     canonical: url,

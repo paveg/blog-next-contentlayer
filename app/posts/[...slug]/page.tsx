@@ -52,6 +52,8 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.description,
+      locale: 'ja_JP',
+      type: 'website',
       images: [
         {
           type: 'image/png',
@@ -65,6 +67,9 @@ export async function generateMetadata({
     twitter: {
       title: post.title,
       description: post.description,
+      card: 'summary_large_image',
+      creator: cfg.twitterId,
+      creatorId: cfg.twitterId,
       images: [
         {
           url: `/opengraph/${post.slugAsParams}`,
@@ -105,7 +110,7 @@ export default async function PostPage({ params }: PostProps) {
         useAppDir={true}
         url={fullUrl}
         title={post.title}
-        images={[]}
+        images={[cfg.siteURL + `/opengraph/${post.slugAsParams}`]}
         datePublished={post.publishedDate}
         dateModified={
           post.lastUpdatedDate ? post.lastUpdatedDate : post.publishedDate

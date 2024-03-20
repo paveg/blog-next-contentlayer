@@ -35,6 +35,36 @@ export async function generateMetadata({
   return {
     title: page.title,
     description: page.description,
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      locale: 'ja_JP',
+      images: [
+        {
+          type: 'image/png',
+          width: 1200,
+          height: 630,
+          url: '/default-image.png',
+          alt: 'Open Graph Image',
+        },
+      ],
+    },
+    twitter: {
+      title: page.title,
+      description: page.description,
+      card: 'summary_large_image',
+      creator: cfg.twitterId,
+      creatorId: cfg.twitterId,
+      images: [
+        {
+          url: '/default-image.png',
+          alt: 'Twitter Image',
+          width: 1200,
+          height: 630,
+          type: 'image/png',
+        },
+      ],
+    },
   };
 }
 
@@ -60,7 +90,7 @@ export default async function PagePage({ params }: PageProps) {
         useAppDir={true}
         url={fullUrl}
         title={page.title}
-        images={[]}
+        images={[cfg.siteURL + '/default-image.png']}
         datePublished={pagePublishedDate}
         authorName={cfg.author}
         description={page?.description ?? ''}

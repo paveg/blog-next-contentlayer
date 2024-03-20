@@ -7,6 +7,7 @@ export const cfg = {
   siteURL: 'https://www.funailog.com',
   siteDescription: 'The logs of a software engineer whose name is Funai.',
   author: 'Ryota Ikezawa',
+  twitterId: '@paveg_',
   links: {
     twitter: twitterLink,
     github: gitHubLink,

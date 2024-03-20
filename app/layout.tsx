@@ -37,8 +37,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: siteName,
     description,
-    site: '@paveg_',
-    creator: '@paveg_',
+    creator: cfg.twitterId,
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,

@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 import { notFound } from 'next/navigation';
 import { NextRequest } from 'next/server';
 import { allPosts } from '@/.contentlayer/generated';
+import { loadGoogleFont } from '@/lib/font';
 
 export const runtime = 'edge';
 
@@ -18,6 +19,10 @@ const size = {
 export const GET = async (request: NextRequest, { params }: Props) => {
   const slug = params?.slug?.join('/');
   const post = allPosts.find((post) => post.slugAsParams === slug);
+  const fontData = await loadGoogleFont({
+    family: 'Noto Sans JP',
+    weight: 800,
+  });
 
   if (!post) {
     notFound();
@@ -41,6 +46,14 @@ export const GET = async (request: NextRequest, { params }: Props) => {
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: 'NotoSansJP',
+          data: fontData,
+          style: 'normal',
+          weight: 800,
+        },
+      ],
     }
   );
 };

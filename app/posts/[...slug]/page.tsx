@@ -62,6 +62,19 @@ export async function generateMetadata({
         },
       ],
     },
+    twitter: {
+      title: post.title,
+      description: post.description,
+      images: [
+        {
+          url: `/opengraph/${post.slug}`,
+          alt: 'Twitter Image',
+          width: 1200,
+          height: 630,
+          type: 'image/png',
+        },
+      ],
+    },
   };
 }
 

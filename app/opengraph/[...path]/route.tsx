@@ -3,7 +3,6 @@ import { ImageResponse } from 'next/server';
 import { allPosts } from '@/.contentlayer/generated';
 
 export const runtime = 'edge';
-export const alt = 'opengraph image';
 export const size = {
   width: 1200,
   height: 630,

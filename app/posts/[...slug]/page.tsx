@@ -57,7 +57,7 @@ export async function generateMetadata({
           type: 'image/png',
           width: 1200,
           height: 630,
-          url: `/opengraph/${post.slug}`,
+          url: `/opengraph/${post.slugAsParams}`,
           alt: 'Open Graph Image',
         },
       ],
@@ -67,7 +67,7 @@ export async function generateMetadata({
       description: post.description,
       images: [
         {
-          url: `/opengraph/${post.slug}`,
+          url: `/opengraph/${post.slugAsParams}`,
           alt: 'Twitter Image',
           width: 1200,
           height: 630,

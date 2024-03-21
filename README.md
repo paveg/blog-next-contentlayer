@@ -4,6 +4,10 @@ I host my blog on [Vercel](https://vercel.com) and use [Next.js](https://nextjs.
 
 ## Create blog post
 
+```bash
+pnpm run create:post
+```
+
 ## Notes
 
 This blog is made with a template with Next.js 14 app dir, Contentlayer, Tailwind CSS and dark mode.

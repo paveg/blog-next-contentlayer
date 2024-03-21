@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import { Inter as FontSans } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { Providers } from '@/components/providers';
 import { Analytics } from '@/components/analytics';
 import { cfg } from '@/utils/constants';
@@ -52,6 +53,8 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
   return (
     <html lang="ja" suppressHydrationWarning>
       <body
@@ -64,6 +67,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <LayoutFooter />
           </div>
           <Analytics />
+          <GoogleAnalytics gaId={gaId} />
           <SpeedInsights />
           <TailwindIndicator />
         </Providers>

@@ -5,7 +5,7 @@ import rehypeCodeTitles from 'rehype-code-titles';
 import readingTime from 'reading-time';
 import remarkFootnotes from 'remark-footnotes';
 import remarkGfm from 'remark-gfm';
-import remarkUnwrapImages from 'remark-unwrap-images'
+import remarkUnwrapImages from 'remark-unwrap-images';
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {

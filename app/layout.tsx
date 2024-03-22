@@ -63,7 +63,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Providers>
           <div className="mx-auto max-w-2xl px-3 py-10">
             <LayoutHeader />
-            <main className='flex justify-center'>{children}</main>
+            <main className="flex justify-center">{children}</main>
             <LayoutFooter />
           </div>
           <Analytics />

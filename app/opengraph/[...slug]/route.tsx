@@ -5,6 +5,7 @@ import { allPosts } from '@/.contentlayer/generated';
 import { loadGoogleFont } from '@/lib/font';
 
 export const runtime = 'edge';
+export const preferredRegion = ['hnd1'];
 
 type Props = {
   params: {

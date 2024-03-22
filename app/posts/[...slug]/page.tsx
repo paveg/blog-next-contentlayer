@@ -155,7 +155,7 @@ export default async function PostPage({ params }: PostProps) {
         <ShareButtons
           title={post.title}
           url={fullUrl}
-          hashtags={[post.category]}
+          hashtags={post.category ? [post.category] : []}
         />
       </div>
       <Separator className="my-4" />
@@ -176,7 +176,7 @@ export default async function PostPage({ params }: PostProps) {
       <ShareButtons
         title={post.title}
         url={fullUrl}
-        hashtags={[post.category]}
+        hashtags={post.category ? [post.category] : []}
       />
     </article>
   );

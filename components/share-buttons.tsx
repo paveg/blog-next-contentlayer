@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 
 type Props = {
-  title: title;
+  title: string;
   url: string;
   hashtags: string[];
 };

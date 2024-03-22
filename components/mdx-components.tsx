@@ -11,7 +11,6 @@ import {
 } from './custom-heading';
 
 const components = {
-  CustomImage,
   h1: CustomH1,
   h2: CustomH2,
   h3: CustomH3,
@@ -22,6 +21,7 @@ const components = {
   p: (props: any) => (
     <p className="leading-7 [&:not(:first-child)]:mt-6" {...props} />
   ),
+  img: CustomImage,
 };
 
 interface MdxProps {

@@ -6,7 +6,11 @@ import { fileURLToPath } from 'url';
 const today = new Date();
 
 inquirer
-  .prompt([
+  .prompt(
+    {
+      name: 'url',
+      message: 'What is the url identity of your new post?',
+    },
     {
       name: 'title',
       message: 'What is the title of your new post?',
@@ -30,6 +34,7 @@ inquirer
     },
   ])
   .then((answers) => {
+    const urlIdentity = answers.url;
     const title = answers.title;
     const description = answers.description;
     const category = answers.category;
@@ -53,7 +58,7 @@ isPublished: false
       '..',
       'content',
       'posts',
-      `${title}.mdx`
+      `${urlIdentity}.mdx`
     );
 
     fs.writeFile(postPath, postContent, (err) => {

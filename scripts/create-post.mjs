@@ -24,12 +24,12 @@ inquirer
       message: 'What is the category of your new post?',
       type: 'list',
       choices: [
-        'Technology',
-        'Programming',
-        'Productivity',
-        'Lifestyle',
-        'Gadgets',
-        'Other',
+        'technology',
+        'programming',
+        'productivity',
+        'lifestyle',
+        'gadgets',
+        'other',
       ],
     }
   )

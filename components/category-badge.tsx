@@ -5,35 +5,28 @@ type Props = {
 };
 
 type CategoryTypes =
-  | 'Technology'
-  | 'Programming'
-  | 'Productivity'
-  | 'Lifestyle'
-  | 'Gadgets'
-  | 'Other';
+  | 'technology'
+  | 'programming'
+  | 'productivity'
+  | 'lifestyle'
+  | 'gadgets'
+  | 'other';
 const ALL_CATEGORIES = [
-  'Technology',
-  'Programming',
-  'Productivity',
-  'Lifestyle',
-  'Gadgets',
-  'Other',
+  'technology',
+  'programming',
+  'productivity',
+  'lifestyle',
+  'gadgets',
+  'other',
 ];
 
 function isSuit(value: string) {
   return ALL_CATEGORIES.includes(value);
 }
 
-const toPascalCase = (str: string) => {
-  return [str]
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join('');
-};
-
 export const CategoryBadge = ({ badgeString }: Props) => {
-  const bs = badgeString ? toPascalCase(badgeString) : 'Other';
-  if (!isSuit(bs)) {
-    return <Badge variant="secondary">Other</Badge>;
+  if (!badgeString || !isSuit(badgeString)) {
+    return <Badge variant="secondary">other</Badge>;
   }
-  return <Badge variant="secondary">{bs}</Badge>;
+  return <Badge variant="secondary">{badgeString}</Badge>;
 };

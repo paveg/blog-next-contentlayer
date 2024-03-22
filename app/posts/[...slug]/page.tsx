@@ -101,9 +101,6 @@ export default async function PostPage({ params }: PostProps) {
   }
 
   const fullUrl = cfg.siteURL + post.slug;
-
-  // TODO: Improve tailwindCSS
-  // TODO: Add post date and the hero image
   return (
     <article className="prose py-6 transition-colors dark:prose-invert">
       <ArticleJsonLd

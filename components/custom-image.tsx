@@ -14,11 +14,19 @@ export const CustomImage = ({
   if (typeof src === 'string' && (!height || !width)) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={src} height={height} width={width} alt={alt} {...others} />
+      <img
+        className="rounded-sm"
+        src={src}
+        height={height}
+        width={width}
+        alt={alt}
+        {...others}
+      />
     );
   }
   return (
     <Image
+      className="rounded-sm"
       layout="responsive"
       src={src}
       alt={alt}

@@ -31,8 +31,8 @@ inquirer
         'Gadgets',
         'Other',
       ],
-    },
-  ])
+    }
+  )
   .then((answers) => {
     const urlIdentity = answers.url;
     const title = answers.title;

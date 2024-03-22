@@ -27,6 +27,7 @@ export const LayoutFooter = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 href={cfg.links.github}
+                aria-label="Link to GitHub repository"
               >
                 <GitHubLogoIcon className={iconClasses} />
               </Link>
@@ -36,6 +37,7 @@ export const LayoutFooter = () => {
                 target="_blank"
                 rel="noreferrer noopener"
                 href={cfg.links.twitter}
+                aria-label="Link to X(Twitter) timeline"
               >
                 <TwitterLogoIcon className={iconClasses} />
               </Link>
@@ -45,6 +47,7 @@ export const LayoutFooter = () => {
                 target="_blank"
                 rel="noreferrer noopener"
                 href={cfg.links.instagram}
+                aria-label="Link to Instagram profile"
               >
                 <InstagramLogoIcon className={iconClasses} />
               </Link>

@@ -2,7 +2,7 @@ import '@/styles/codes/prism-dracula.css';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArticleJsonLd } from 'next-seo';
-import { ClockIcon } from '@radix-ui/react-icons';
+import { CalendarIcon, ClockIcon, ReloadIcon } from '@radix-ui/react-icons';
 import { allPosts } from 'contentlayer/generated';
 import { Mdx } from '@/components/mdx-components';
 import { TableOfContents } from '@/components/table-of-contents';
@@ -16,10 +16,10 @@ interface PostProps {
   };
 }
 
-const formatDate = (date: string, locale = 'en-JP') => {
+const formatDate = (date: string, locale = 'ja-JP') => {
   const row = new Date(date).toLocaleDateString(locale, {
     year: 'numeric',
-    month: 'short',
+    month: 'numeric',
     day: 'numeric',
   });
 
@@ -118,42 +118,43 @@ export default async function PostPage({ params }: PostProps) {
         authorName={cfg.author}
         description={post?.description ?? ''}
       />
-      <h1 className="mb-4 scroll-m-20 text-3xl font-extrabold tracking-tight md:mb-8 lg:text-5xl">
+      <h1 className="mb-2 scroll-m-20 text-3xl font-extrabold tracking-tight md:mb-4 lg:text-5xl">
         {post.title}
       </h1>
+      {post.heroImage && (
+        <CustomImage src={post.heroImage} alt="A hero image" />
+      )}
+      <div
+        id="date-container"
+        className="mb-2 flex items-center justify-start gap-2 text-sm"
+      >
+        <span className="flex items-center gap-1 text-slate-700 dark:text-slate-200">
+          <CalendarIcon className="my-0 h-4 w-4" />
+          {formatDate(post.publishedDate)}
+        </span>
+        {post.lastUpdatedDate && (
+          <span className="flex items-center gap-1 text-slate-700 dark:text-slate-200">
+            <ReloadIcon className="my-0 h-4 w-4" />
+            {formatDate(post.lastUpdatedDate)}
+          </span>
+        )}
+      </div>
       <div className="flex flex-row gap-2 text-sm">
         <div className="flex-1">
           <span className="text-slate-700 dark:text-slate-200">
             <CategoryBadge badgeString={post.category} />
           </span>
         </div>
-        <div id="container" className="text-right">
-          {post.lastUpdatedDate ? (
+        {post.readingTime && (
+          <div className="flex items-center justify-end gap-1 text-sm">
+            <ClockIcon className="my-0 h-4 w-4" />
             <span className="text-slate-700 dark:text-slate-200">
-              Last updated {formatDate(post.lastUpdatedDate)}
+              {post.readingTime.text}
             </span>
-          ) : (
-            <span className="text-slate-700 dark:text-slate-200">
-              Published {formatDate(post.publishedDate)}
-              <br />
-            </span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-      {post.heroImage && (
-        <CustomImage src={post.heroImage} alt="A hero image" />
-      )}
       <hr className="my-4" />
-      {post.readingTime && (
-        <div className="flex items-center justify-end gap-1 text-sm">
-          <ClockIcon className="my-0 h-4 w-4">
-            {post.readingTime.text}
-          </ClockIcon>
-          <span className="text-slate-700 dark:text-slate-200">
-            {post.readingTime.text}
-          </span>
-        </div>
-      )}
       <div
         className="lg:grid lg:grid-cols-4 lg:gap-x-6"
         style={{ gridTemplateRows: 'auto 1fr' }}

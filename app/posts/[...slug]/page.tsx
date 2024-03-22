@@ -9,6 +9,8 @@ import { TableOfContents } from '@/components/table-of-contents';
 import { cfg } from '@/utils/constants';
 import { CategoryBadge } from '@/components/category-badge';
 import { CustomImage } from '@/components/custom-image';
+import { ShareButtons } from '@/components/share-buttons';
+import { Separator } from '@/components/ui/separator';
 
 interface PostProps {
   params: {
@@ -136,7 +138,7 @@ export default async function PostPage({ params }: PostProps) {
           </span>
         )}
       </div>
-      <div className="flex flex-row gap-2 text-sm">
+      <div className="flex flex-row items-center gap-2 text-sm">
         <div className="flex-1">
           <span className="text-slate-700 dark:text-slate-200">
             <CategoryBadge badgeString={post.category} />
@@ -150,13 +152,18 @@ export default async function PostPage({ params }: PostProps) {
             </span>
           </div>
         )}
+        <ShareButtons
+          title={post.title}
+          url={fullUrl}
+          hashtags={post.category ? [post.category] : []}
+        />
       </div>
-      <hr className="my-4" />
+      <Separator className="my-4" />
       <div
         className="lg:grid lg:grid-cols-8 lg:gap-x-4"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
-        <div className="py-4 lg:col-span-7">
+        <div className="py-2 lg:col-span-7">
           <Mdx code={post.body.code} />
         </div>
         <aside>
@@ -165,6 +172,12 @@ export default async function PostPage({ params }: PostProps) {
           </div>
         </aside>
       </div>
+      <Separator className="mb-2 mt-10" />
+      <ShareButtons
+        title={post.title}
+        url={fullUrl}
+        hashtags={post.category ? [post.category] : []}
+      />
     </article>
   );
 }

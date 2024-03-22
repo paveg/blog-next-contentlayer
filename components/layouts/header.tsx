@@ -9,6 +9,7 @@ export const LayoutHeader = () => {
         <nav className="ml-auto space-x-6 text-sm font-medium">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
+          <Link href="/privacy">Privacy Policy</Link>
         </nav>
       </div>
     </header>

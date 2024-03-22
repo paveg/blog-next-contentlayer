@@ -96,8 +96,9 @@ export default async function PagePage({ params }: PageProps) {
         description={page?.description ?? ''}
       />
 
-      <h1>{page.title}</h1>
-      {page.description && <p className="text-xl">{page.description}</p>}
+      <h1 className="mb-4 scroll-m-20 text-3xl font-extrabold tracking-tight md:mb-8 lg:text-5xl">
+        {page.title}
+      </h1>
       <hr />
       <Mdx code={page.body.code} />
     </article>

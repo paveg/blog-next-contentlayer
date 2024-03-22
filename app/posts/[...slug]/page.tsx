@@ -153,14 +153,14 @@ export default async function PostPage({ params }: PostProps) {
       </div>
       <hr className="my-4" />
       <div
-        className="lg:grid lg:grid-cols-4 lg:gap-x-6"
+        className="lg:grid lg:grid-cols-8 lg:gap-x-4"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
-        <div className="py-4 lg:col-span-3">
+        <div className="py-4 lg:col-span-7">
           <Mdx code={post.body.code} />
         </div>
         <aside>
-          <div className="hidden lg:sticky lg:top-24 lg:col-span-1 lg:block">
+          <div className="hidden lg:sticky lg:top-20 lg:col-span-1 lg:block">
             <TableOfContents source={post.body.raw} />
           </div>
         </aside>

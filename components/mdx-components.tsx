@@ -18,7 +18,8 @@ const components = {
   h5: CustomH5,
   h6: CustomH6,
   a: CustomLink,
-  CustomImage,
+  // TODO: Improve CustomImage component as can be handled size automatically
+  img: (props: any) => <CustomImage alt={props.alt} src={props.src} className='rounded-sm' />,
 };
 
 interface MdxProps {

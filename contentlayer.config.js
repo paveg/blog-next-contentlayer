@@ -5,6 +5,7 @@ import rehypeCodeTitles from 'rehype-code-titles';
 import readingTime from 'reading-time';
 import remarkFootnotes from 'remark-footnotes';
 import remarkGfm from 'remark-gfm';
+import remarkUnwrapImages from 'remark-unwrap-images'
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -76,6 +77,7 @@ export default makeSource({
   documentTypes: [Post, Page],
   mdx: {
     remarkPlugins: [
+      remarkUnwrapImages,
       // remark-gfm 4.0.0 has an issue to render table.
       // @see https://github.com/remarkjs/remark-gfm/issues/57
       remarkGfm,

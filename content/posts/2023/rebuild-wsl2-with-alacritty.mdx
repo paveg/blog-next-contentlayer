@@ -1,0 +1,98 @@
+---
+title: Rebuild development environment with wsl2 + alacritty(Zellij)
+publishedDate: 2023-09-15
+lastUpdatedDate: 2024-03-23
+description: Rebuild my development env with wsl2 and alacritty, additonally I installed zellij as a terminal multi prexer
+heroImage: https://funailog.imgix.net/2023/wsl2+zellij.jpg?auto=format,compress,enhance
+isPublished: true
+category: programming
+---
+
+Actually, my development envrionment was broken when I was developing web application and updating my PC to Windows 11 for a week, ...and suddenly it said 'Goodbye'.
+My Windows PC is still Windows 10, definitely I failed updating OS in the fact.
+
+I don't touch Windows PC much except to play games, somehow I want to write codes using by it.
+It was 100% a whim. That's why I started restoring the broken environment.
+
+## Reset Ubuntu App
+
+At first, I need to reset Ubuntu application, so do by following these steps.
+
+1. Open the configration menu
+2. Go to the App & Functions page
+3. Search from the list, you fill `ubuntu` and find ubuntu app from here
+4. Click the target application and go to the detail
+5. Click the reset
+
+## Renew Ubuntu app
+
+You already reset the old Ubuntu app, so you can create a new one on your PC, it should be the same as to buy new PC. very happy.
+
+1. Open the search window and fill in `ubuntu`
+2. Click the application, then start to create new ubuntu app. It's a very easy task
+3. Finally, you can check creation of the application
+4. Open PowerShell and type `wsl -l -v` then you can see the result as following
+
+```powershell
+PS C:\Users\user1> wsl -l -v
+  NAME                   STATE          VERSION
+* docker-desktop-data    Stopped        2
+  docker-desktop         Stopped        2
+  Ubuntu                 Running        2
+```
+
+If you have time, it's better to change the default distribution to `Ubuntu` because the default of my env was `docker-desktop-data`.
+
+```powershell
+wsl --set-default <virtual-environment-name>
+```
+
+```powershell
+PS C:\Users\user1> wsl --set-default Ubuntu
+PS C:\Users\user1> wsl -l -v
+  NAME                   STATE          VERSION
+* Ubuntu                 Running        2
+  docker-desktop         Stopped        2
+  docker-desktop-data    Stopped        2
+```
+
+The reset process is now completed. So, let's get started to create new environment!
+
+## Set up new environment
+
+### Installation Alacritty
+
+- [alacritty/alacritty](https://github.com/alacritty/alacritty)
+- https://alacritty.org
+
+You can install the alacritty which is a modern terminal emulator that comes with sensible defaults, but allows for extensive configrations.
+
+After installing, you need to set configuration as follows:
+
+1. Execute `Win + R`, and search `%appdata%`
+2. Create alacritty directory and also create `alacritty.yml` which is configuration file for alacritty.
+3. Configure settings
+
+```yml
+# alacritty.yml
+shell:
+  program: "C:\\Windows\\System32\\wsl.exe ~ -d Ubuntu"
+  args:
+    - 'zellij attach --index 0 --create'
+
+window:
+  dimensions:
+    columns: 200
+    lines: 60
+  padding:
+    x: 8
+    y: 4
+  opacity: 0.95
+
+selection:
+  save_to_clipboard: true
+```
+
+4. Then, you start up `alacritty` ( Don't forget to install Zellij beforehand. )
+
+- https://zellij.dev

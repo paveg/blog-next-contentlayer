@@ -1,0 +1,243 @@
+---
+title: Google Analytics Data API (GA4) を使ってNextjs上に人気記事を表示する
+publishedDate: 2023-01-16
+lastUpdatedDate: 2024-03-23
+description: Google Analytics Data API (GA4) + Nextjsで人気記事の表示機能を実装します。ユーザーのアクセス数によって表示される記事が動的に変わります。
+heroImage: https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/f3f8b51d05504a5fa3a7edbf21011fba/%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E8%A8%98%E4%BA%8B%E3%81%AE%E8%A1%A8%E7%A4%BA%E6%A9%9F%E8%83%BD%E3%82%92%E5%AE%9F%E8%A3%85.png
+isPublished: true
+category: programming
+---
+
+こんにちは。フナイです。
+今回は掲題の通り、**Google Analytics Data API (GA4)** を利用して人気記事を表示していきます。
+
+https://developers.google.com/analytics/devguides/reporting/data/v1?hl=ja
+
+参考に出来る記事ないかな？と思いつつググりまくったものの
+**Google Analytics Reporting API v4を利用した記事** しかヒットしませんでした。
+「GA4 API」みたいな検索が良くなかったのかもしれません。
+まあ、それなら、記事にしちゃえばいいやと思って今に至ります。
+
+機能が半分ぐらい実装される所で、良さげな記事を見つけました（僕の検索力に問題があったようです）。
+
+本記事の実装は、恐らく当ブログで利用されます。参考になれば幸いです。
+
+## Google Analytics Data API (GA4) の使い方
+
+### ライブラリの準備
+
+今回はNext.js + TypeScriptで実装していきます。好きなパッケージマネージャでインストールしましょう。
+
+```bash
+npm install @google-analytics/data
+# or
+yarn add @google-analytics/data
+```
+
+必要なライブラリはこれだけです。
+
+https://googleapis.dev/nodejs/analytics-data/latest/index.html
+
+### API利用の準備
+
+これだけだとまだAPIを実行することは出来ません。
+APIを実行するために、各種サービスの準備をしていきます。
+
+- Google Cloud Platform
+  - **サービスアカウントの作成**
+  - サービスアカウントの鍵の発行と設定
+- Google Analytics
+  - **プロパティのアクセス管理**
+
+#### サービスアカウントの作成
+
+（プロジェクトの作成については、ここでは省略します。）
+
+Google Cloud Platformのページからサービスアカウントを作成します。
+
+![サービスアカウントのリストを開きます](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/667a731fceea4f1b9aa1478134ce8fae/service-account-step1.jpg?auto=format)
+_サービスアカウントのリストを開きます_
+
+![サービスアカウントに作成するアカウントの詳細を入れる](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/80f279fe22404053a6592dfe0511309b/service-account-step2.jpg?auto=format)
+_サービスアカウントに作成するアカウントの詳細を入れます_
+
+![念のため閲覧者のみのロールを割り当ててアカウントの作成を完了します](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/05599a41e3a844a38e98d5cf448d7034/service-account-step3.jpg?auto=format)
+_念のため閲覧者のみのロールを割り当ててアカウントの作成を完了します_
+
+ここまででサービスアカウントの作成が完了します。簡単でしたね？
+
+#### サービスアカウントから鍵の発行
+
+ここでは、先の項で作成したサービスアカウントに紐づく鍵を発行します。
+
+![サービスアカウントのキータブの画像](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/7d51e049cbb441949c30692f24c48043/service-account-step4.jpg?auto=format)
+_サービスアカウントのキータブを開いて、新しい鍵を作成ボタンを押下します_
+
+![新しい鍵を作成ボタンを押下後の画像](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/6e992a29f7c8400487fbadb7e0a9db06/service-account-step5.jpg?auto=format)
+_新しい鍵を作成ボタンを押下後、キーのタイプが選択できるので`JSON`を選択します_
+
+#### 環境変数の設定
+
+また今回はNext.jsのSSGを利用します。
+ですのでcredential等のファイル形式ではなく、必要な値を環境変数として埋め込むようにします。
+
+```json
+{
+  "type": "service_account",
+  "project_id": "aaa",
+  "private_key_id": "bbb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nccc\n-----END PRIVATE KEY-----\n",
+  "client_email": "test-service-account@silver-adapter-374912.iam.gserviceaccount.com",
+  "client_id": "ddd",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/test-service-account%40silver-adapter-374912.iam.gserviceaccount.com"
+}
+```
+
+JSONファイルがダウンロードされるので、以下の2つをメモっておいてください。
+
+- `client_email`
+- `private_key`
+
+環境変数では以下として利用します。
+
+```bash
+GA_CLIENT_EMAIL=test-service-account@silver-adapter-374912.iam.gserviceaccount.com
+GA_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----
+ccc
+-----END PRIVATE KEY-----"
+# 合わせてプロパティIDも設定しておく
+GA_PROPERTY_ID=xxx
+```
+
+Next.jsではクライアント側にも見えるように `NEXT_PUBLIC_*` という指定が出来ますが、今回は利用しません。
+APIキーが露出することによって、意図せずAPIが叩かれたり、情報が流出したりする可能性があります。
+
+ここまで完了したらGoogle Cloud Platform側の設定は完了です。
+Google Analyticsの設定に移ります。
+
+#### プロパティのアクセス管理
+
+先にGoogle Cloud Platformで作成したアカウントの権限をGoogle Anaylticsに登録します。
+
+![Google Analyticsの管理ページ](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/4c0fa22d9ccd4d46ac1af593b516d6c1/property-step1.jpg?auto=format)
+_Google Analyticsの管理ページをから「プロパティのアクセス管理」を押下します_
+
+![プロパティのアクセス管理のサイドバーが開いた後](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/758180c39a784f06998d170ed4f5c4c1/property-step2.jpg?auto=format)
+_サイドバーを開いたら右上のプラスボタンを押下してアカウントの追加画面を開きます_
+
+![役割とデータ制限の追加ページ](https://images.microcms-assets.io/assets/3ab7834809eb4654a5239e79fba895de/a8c187b5840f45e1844aad3a445e2f00/property-step3.jpg?auto=format)
+_役割とデータ制限の追加でアドレスを指定し、追加する_
+
+このページでは以下の順に実行します。
+
+1. サービスアカウントのメールアドレスを入力する
+   - 先の `test-service-account@silver-adapter-374912.iam.gserviceaccount.com`
+2. 「新規ユーザーにメールで通知する」のチェックボックスを外す
+3. 「追加」ボタンを押下する
+
+上記でGoogle Analytics側の設定が完了します。これでようやくAPIを叩く準備が整いました。
+
+### APIを実行する
+
+以下の様にNode.jsでAPIを実行することが可能です。
+
+```typescript
+import { BetaAnalyticsDataClient } from '@google-analytics/data';
+
+const analyticsDataClient = new BetaAnalyticsDataClient({
+  credentials: {
+    client_email: process.env.GA_CLIENT_EMAIL,
+    private_key: process.env.GA_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  },
+});
+
+export const fetchPopularPosts = async (
+  startDate: '7daysAgo' | '14daysAgo' | '30daysAgo',
+  pageSize: number
+) => {
+  const [response] = await analyticsDataClient.runReport({
+    property: `properties/${process.env.GA_PROPERTY_ID}`,
+    dateRanges: [
+      {
+        startDate: startDate,
+        endDate: 'today',
+      },
+    ],
+    dimensions: [
+      {
+        name: 'pagePath',
+      },
+    ],
+    metrics: [
+      {
+        name: 'screenPageViews',
+      },
+    ],
+    dimensionFilter: {
+      filter: {
+        fieldName: 'pagePath',
+        stringFilter: {
+          matchType: 5, //
+          value: '^/(articles)/[0-9a-zA-Z\\-]+$',
+        },
+      },
+    },
+    limit: pageSize,
+  });
+  return response.rows?.map((row) => {
+    console.log(row.dimensionValues[0], row.metricValues[0]);
+  });
+};
+```
+
+取得した結果を出力すると以下のような形式で表示されます。
+使い易い様に `Object` に詰めたりしましょう。
+
+```bash
+{ value: '/articles/aaa', oneValue: 'value' } { value: '44', oneValue: 'value' }
+{ value: '/articles/ddd', oneValue: 'value' } { value: '38', oneValue: 'value' }
+{ value: '/articles/ccc', oneValue: 'value' } { value: '24', oneValue: 'value' }
+{ value: '/about', oneValue: 'value' } { value: '24', oneValue: 'value' }
+```
+
+上記のデータから記事データのみでフィルタしたいので`dimensionFilter` の部分に正規表現を入れます。
+フィルタに利用する `MatchType` には `FULL_REGEXP` を利用しています。
+
+```typescript
+namespace StringFilter {
+  /** MatchType enum. */
+  enum MatchType {
+    MATCH_TYPE_UNSPECIFIED = 0,
+    EXACT = 1,
+    BEGINS_WITH = 2,
+    ENDS_WITH = 3,
+    CONTAINS = 4,
+    FULL_REGEXP = 5,
+    PARTIAL_REGEXP = 6,
+  }
+}
+```
+
+## 実装
+
+最終的な実装については添付しておきます。
+
+https://github.com/paveg/blog/blob/main/src/lib/ga.ts#L1-L53
+
+コンポーネント側
+
+https://github.com/paveg/blog/blob/main/src/pages/popular.tsx#L21-L28
+
+## おわりに
+
+思ったより実装自体は難しくなかったですが、下準備が大変なので面倒くさいかもしれません。
+この機能は既に以下のページで運用しています。実際に触ってみてください。
+
+## 参考
+
+- https://developers.gmo.jp/23074/
+- https://zenn.dev/taka_shino/articles/450d773a99f904
+- https://7nohe-tech-blog.vercel.app/post/node-js-google-analytics-4-ga4-contentful-google-analytics-data-api

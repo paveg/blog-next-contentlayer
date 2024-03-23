@@ -61,9 +61,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${fontSans.variable}`}
       >
         <Providers>
-          <div className="mx-auto max-w-2xl px-3 py-10">
+          <div className="mx-auto max-w-2xl px-4 py-10">
             <LayoutHeader />
-            <main className="flex justify-center">{children}</main>
+            <main>{children}</main>
             <LayoutFooter />
           </div>
           <Analytics />

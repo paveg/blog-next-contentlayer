@@ -17,8 +17,8 @@ export const CustomImage = ({
       <img
         className="rounded-sm"
         src={src}
-        height={height}
-        width={width}
+        height={height ?? 600}
+        width={width ?? 1000}
         alt={alt}
         {...others}
       />

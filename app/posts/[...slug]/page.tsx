@@ -104,7 +104,7 @@ export default async function PostPage({ params }: PostProps) {
 
   const fullUrl = cfg.siteURL + post.slug;
   return (
-    <article className="prose py-6 transition-colors dark:prose-invert">
+    <article className="prose prose-slate py-6 transition-colors dark:prose-invert lg:prose-lg">
       <ArticleJsonLd
         useAppDir={true}
         url={fullUrl}
@@ -163,7 +163,7 @@ export default async function PostPage({ params }: PostProps) {
         className="lg:grid lg:grid-cols-8 lg:gap-x-4"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
-        <div className="py-2 lg:col-span-7">
+        <div className="break-words py-2 lg:col-span-7">
           <Mdx code={post.body.code} />
         </div>
         <aside>

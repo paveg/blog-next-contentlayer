@@ -16,7 +16,7 @@ export default function Home() {
   }
 
   return (
-    <div className="prose dark:prose-invert">
+    <div className="prose prose-slate dark:prose-invert">
       {sorted(filtered).map((post) => (
         <article key={post._id}>
           <Link href={post.slug}>

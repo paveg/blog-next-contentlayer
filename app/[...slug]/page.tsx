@@ -85,7 +85,7 @@ export default async function PagePage({ params }: PageProps) {
   const fullUrl = [cfg.siteURL, page.slugAsParams].join('/');
 
   return (
-    <article className="prose py-6 dark:prose-invert">
+    <article className="prose prose-slate py-6 dark:prose-invert">
       <ArticleJsonLd
         useAppDir={true}
         url={fullUrl}

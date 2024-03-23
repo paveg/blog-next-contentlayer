@@ -14,3 +14,19 @@ export const cfg = {
     instagram: instagramLink,
   },
 };
+
+export type CategoryTypes =
+  | 'technology'
+  | 'programming'
+  | 'productivity'
+  | 'lifestyle'
+  | 'gadgets'
+  | 'other';
+export const ALL_CATEGORIES = [
+  'technology',
+  'programming',
+  'productivity',
+  'lifestyle',
+  'gadgets',
+  'other',
+];

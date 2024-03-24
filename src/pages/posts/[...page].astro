@@ -16,9 +16,7 @@ export async function getStaticPaths({
 }) {
   const posts = (await getCollection('posts'))
     .sort(
-      (a, b) =>
-        (a.data.lastUpdatedDate ?? a.data.publishedDate).getTime() -
-        (b.data.lastUpdatedDate ?? b.data.publishedDate).getTime()
+      (a, b) => a.data.publishedDate.getTime() - b.data.publishedDate.getTime()
     )
     .reverse();
 
@@ -30,6 +28,6 @@ const meta = await getEntry('site', 'meta');
 const { page } = Astro.props;
 ---
 
-<Layout title={meta.data.index.title} description={meta.data.index.description}>
+<Layout title={meta.data.blog.title} description={meta.data.blog.description}>
   <Posts page={page} />
 </Layout>

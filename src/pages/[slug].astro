@@ -26,9 +26,7 @@ export async function getStaticPaths() {
 }
 const { page } = Astro.props;
 const { Content } = await page.render();
-export const components = {
-  h2: AstroLink,
-};
+export const components = {};
 ---
 
 <Layout
@@ -40,6 +38,7 @@ export const components = {
   }}
 >
   <Article>
+    a
     <Content components={components} />
   </Article>
 </Layout>

@@ -3,6 +3,11 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import { defineConfig } from 'astro/config';
 import { cfg } from './utils/constants';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutoHeadings from 'rehype-autolink-headings';
+import type { Element } from 'hast';
+import { h } from 'hastscript';
+import tailwindcssNesting from 'tailwindcss/nesting';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,5 +18,47 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
+  prefetch: {
+    defaultStrategy: 'viewport',
+    prefetchAll: true,
+  },
+  vite: {
+    build: {
+      cssMinify: 'lightningcss',
+      css: {
+        transformer: 'lightningcss',
+        lightningcss: {
+          drafts: {
+            customMedia: true,
+          },
+        },
+        postcss: {
+          plugins: [tailwindcssNesting()],
+        },
+      },
+    },
+  },
+  markdown: {
+    syntaxHighlight: false,
+    smartypants: false,
+    remarkPlugins: [],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutoHeadings,
+        {
+          behavior: 'append',
+          properties(node: Element) {
+            return {
+              'aria-labelledby': node.properties.id,
+            };
+          },
+          content: h('span.heading-link-icon', {
+            title: 'Link',
+          }),
+        },
+      ],
+    ],
+  },
   site: cfg.siteURL,
 });

@@ -1,0 +1,52 @@
+main {
+  article#article {
+    @apply flex-grow break-words border-t border-solid;
+    & p,
+    & li {
+      & a {
+        /* TODO: Implement CSS when visited and hover */
+        @apply my-1 text-link-700 underline decoration-2 underline-offset-4;
+      }
+    }
+    & p:not(blockquote > p) {
+      @apply mt-6;
+    }
+    & code {
+      @apply font-mono;
+    }
+    & h1 {
+      @apply mt-12;
+    }
+    & h2,
+    h3 {
+      @apply mb-4 mt-8;
+    }
+    & h4 {
+      @apply mb-3 mt-6;
+    }
+    & h5 {
+      @apply mb-2 mt-4;
+    }
+    & h6 {
+      @apply mb-1 mt-2;
+    }
+    & h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      &:before {
+        content: '❯';
+        @apply mr-2 text-muted-foreground;
+      }
+      &:hover {
+        .heading-link-icon {
+          &:after {
+            @apply ml-1 align-baseline text-sm;
+            content: '🔗';
+          }
+        }
+      }
+    }
+  }
+}

@@ -71,6 +71,41 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply mx-auto flex min-h-screen max-w-3xl flex-col justify-between bg-background px-4 py-2 font-sans leading-7 text-foreground md:py-4;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold leading-6;
+  }
+
+  h1 {
+    @apply text-3xl lg:text-5xl;
+  }
+  h2 {
+    @apply text-2xl lg:text-3xl;
+  }
+  h3 {
+    @apply text-xl lg:text-2xl;
+  }
+  h4 {
+    @apply text-lg lg:text-xl;
+  }
+  h5,
+  h6 {
+    @apply text-base lg:text-lg;
+  }
+
+  blockquote {
+    @apply relative my-6 px-6 text-muted-foreground;
+
+    &::before {
+      content: '';
+      @apply absolute left-0 h-full w-1 bg-secondary-foreground;
+    }
   }
 }

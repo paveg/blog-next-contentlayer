@@ -6,12 +6,4 @@ type Props = {
 const props = Astro.props;
 ---
 
-{
-  Object.hasOwn(props, 'data-linkcard') ? (
-    <a {...props}>LinkCard</a>
-  ) : (
-    <a {...props}>
-      <slot />
-    </a>
-  )
-}
+{Object.hasOwn(props, 'data-linkcard') ? <a {...props}>LinkCard</a> : <slot />}

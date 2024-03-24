@@ -29,6 +29,7 @@ export async function getStaticPaths() {
 const { Content } = await Astro.props.post.render();
 
 const { post } = Astro.props;
+const components = {};
 ---
 
 <Layout
@@ -37,6 +38,8 @@ const { post } = Astro.props;
   path={`/${post.collection}/${post.slug}`}
 >
   <Article>
-    <Content />
+    <h1>{post.data.title}</h1>
+    <img src={post.data.heroImage} />
+    <Content components={components} />
   </Article>
 </Layout>

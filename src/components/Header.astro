@@ -1,0 +1,16 @@
+---
+import ButtonLink from '@/components/ButtonLink.astro';
+import { ModeToggle } from '@/components/mode-toggle';
+---
+
+<header>
+  <div class="flex items-center justify-between pb-2">
+    <nav class="ml-auto space-x-1">
+      <ButtonLink variant="ghost" size="sm" href="/">Home</ButtonLink>
+      <ButtonLink variant="ghost" size="sm" href="/posts">Blog</ButtonLink>
+      <ButtonLink variant="ghost" size="sm" href="/about">About</ButtonLink>
+      <ButtonLink variant="ghost" size="sm" href="/privacy">Privacy</ButtonLink>
+      <ModeToggle client:load />
+    </nav>
+  </div>
+</header>

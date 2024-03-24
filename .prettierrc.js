@@ -3,5 +3,5 @@ module.exports = {
   singleQuote: true,
   printWidth: 80,
   semi: true,
-  plugins: ['prettier-plugin-tailwindcss'],
+  plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-astro'],
 };

@@ -1,0 +1,75 @@
+main {
+  article#article {
+    @apply flex-grow break-words border-t border-solid;
+    & p,
+    & li {
+      & a {
+        /* TODO: Implement CSS when visited and hover */
+        @apply my-1 px-1 text-link-600 decoration-2 underline-offset-4 visited:text-link-800 hover:text-link-800 hover:underline;
+      }
+    }
+    & p:not(blockquote > p) {
+      @apply mt-6;
+    }
+    & table {
+      @apply mt-6 block table-fixed border-collapse overflow-x-auto text-center;
+    }
+    & th,
+    & td {
+      @apply border-solid px-2 py-1;
+    }
+    & th {
+      @apply bg-muted hover:bg-secondary;
+    }
+    & code {
+      @apply font-mono;
+    }
+    & ul {
+      @apply list-disc;
+    }
+    & ol {
+      @apply list-decimal;
+    }
+    & li {
+      @apply ml-4 mt-3 list-inside leading-6;
+    }
+    & h1 {
+      @apply mt-12;
+    }
+    & h2,
+    h3 {
+      @apply mb-4 mt-8;
+    }
+    & h4 {
+      @apply mb-3 mt-6;
+    }
+    & h5 {
+      @apply mb-2 mt-4;
+    }
+    & h6 {
+      @apply mb-1 mt-2;
+    }
+    & h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      &:before {
+        content: '❯';
+        @apply mr-2 text-muted-foreground;
+      }
+      &:hover {
+        .heading-link-icon {
+          &:after {
+            @apply ml-1 align-baseline text-sm;
+            content: '🔗';
+          }
+        }
+      }
+    }
+
+    code:not(figure[data-rehype-pretty-code-figure] code) {
+      @apply my-0.5 px-0.5;
+    }
+  }
+}

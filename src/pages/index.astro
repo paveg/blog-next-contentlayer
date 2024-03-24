@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+
+const meta = await getEntry('site', 'meta');
+---
+
+<Layout
+  title={meta.data.index.title}
+  description={meta.data.index.description}
+  path="/"
+  og={{
+    enabled: true,
+  }}
+>
+  <main>
+    <h1 class="text-4xl">TBD</h1>
+  </main>
+</Layout>

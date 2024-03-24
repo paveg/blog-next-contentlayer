@@ -1,0 +1,12 @@
+index:
+  title: フナイログ
+  description: The logs of a software engineer whose name is Funai.
+blog:
+  title: Blog | フナイログ
+  description: A list of blog posts
+author:
+  name: Ryota Ikezawa
+links:
+  github: https://github.com/paveg/blog-next-contentlayer
+  instagram: https://www.instagram.com/funa1y
+  twitter: https://twitter.com/paveg_

@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+import Layout from '@/layouts/Layout.astro';
+import Article from '@/components/Article.astro';
+import AstroFigure from '@/components/AstroFigure.astro';
+import { ClockIcon } from '@radix-ui/react-icons';
+
+export type Props = {
+  post: CollectionEntry<'posts'>;
+};
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  return posts.map((post) => {
+    const [year, slug] = post.slug.split('/');
+    return {
+      params: {
+        slug,
+        year,
+      },
+      props: {
+        post,
+      },
+    };
+  });
+}
+
+const { Content, remarkPluginFrontmatter: frontmatter } =
+  await Astro.props.post.render();
+
+const { post } = Astro.props;
+const components = {
+  figure: AstroFigure,
+};
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  path={`/${post.collection}/${post.slug}`}
+  og={{
+    enabled: true,
+  }}
+>
+  <Article>
+    <h1>{post.data.title}</h1>
+    <img class="my-6" src={post.data.heroImage} />
+    {
+      frontmatter.readingTime && (
+        <div class="flex items-center justify-end gap-1 text-sm">
+          <ClockIcon className="my-0 size-4" />
+          <span class="text-slate-700 dark:text-slate-200">
+            {frontmatter.readingTime}
+          </span>
+        </div>
+      )
+    }
+    <Content components={components} />
+  </Article>
+</Layout>

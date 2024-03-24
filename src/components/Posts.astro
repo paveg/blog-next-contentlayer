@@ -1,0 +1,79 @@
+---
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '@/lib/date';
+import { CalendarIcon, ReloadIcon } from '@radix-ui/react-icons';
+import { Badge } from '@/components/ui/badge';
+import Pagination from '@/components/AstroPagination.astro';
+
+export type Props = {
+  page: Page<CollectionEntry<'posts'>>;
+};
+
+const { page } = Astro.props;
+---
+
+<>
+  <ul>
+    {
+      page.data.map((post) => {
+        const { slug, data, collection } = post;
+        const publishedDate = new Date(data.PublishedDate);
+
+        return (
+          <li>
+            <article>
+              <div class="flex gap-2 items-center leading-5 text-sm">
+                <span class="flex items-center gap-1">
+                  <CalendarIcon className="my-0 size-4" />
+                  {formatDate(publishedDate.toString())}
+                </span>
+                {data?.lastUpdatedDate && (
+                  <span class="flex items-center gap-1">
+                    <ReloadIcon className="my-0 size-4" />
+                    {formatDate(new Date(data.lastUpdatedDate).toString())}
+                  </span>
+                )}
+                <Badge>{data.category || 'others'}</Badge>
+              </div>
+              <a href={`/${collection}/${slug}`}>
+                <h2>{data.title}</h2>
+                <span class="text-sm leading-5">{data.description}</span>
+              </a>
+            </article>
+          </li>
+        );
+      })
+    }
+  </ul>
+  <Pagination page={page} />
+</>
+
+<style>
+  ul {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 2rem;
+  }
+  article {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--secondary);
+  }
+  h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    max-height: 6em;
+
+    &:hover {
+      text-decoration: underline solid 2px;
+    }
+  }
+</style>

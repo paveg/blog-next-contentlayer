@@ -8,15 +8,13 @@ import {
   PaginationItem,
   PaginationNext,
   PaginationEllipsis,
-  PaginationLink,
 } from '@/components/ui/pagination';
 
 export type Props = {
   page?: Page<CollectionEntry<'posts'>>;
-  topPath?: string;
 };
 
-const { page, topPath } = Astro.props;
+const { page } = Astro.props;
 ---
 
 <nav class="mt-10">
@@ -32,7 +30,7 @@ const { page, topPath } = Astro.props;
       {
         page?.url?.prev && page?.url?.next && (
           <PaginationItem>
-            <PaginationEllipsis size="sm" />
+            <PaginationEllipsis />
           </PaginationItem>
         )
       }

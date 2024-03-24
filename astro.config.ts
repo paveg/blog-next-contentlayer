@@ -10,6 +10,7 @@ import rehypeAutoHeadings from 'rehype-autolink-headings';
 import type { Element } from 'hast';
 import { h } from 'hastscript';
 import rehypePrettyCode from 'rehype-pretty-code';
+import { remarkReadingTime } from './src/lib/remark-reading-time.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,7 +30,7 @@ export default defineConfig({
   },
   vite: {
     build: {
-      cssMinify: 'lightningcss'
+      cssMinify: 'lightningcss',
     },
     css: {
       lightningcss: {
@@ -42,7 +43,7 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
     smartypants: false,
-    remarkPlugins: [],
+    remarkPlugins: [remarkReadingTime],
     rehypePlugins: [
       rehypeSlug,
       [

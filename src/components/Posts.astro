@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import { formatDate } from '@/lib/date';
 import { CalendarIcon, ReloadIcon } from '@radix-ui/react-icons';
 import { Badge } from '@/components/ui/badge';
-import Pagination from '@/components/Pagination.astro';
+import Pagination from '@/components/AstroPagination.astro';
 
 export type Props = {
   page: Page<CollectionEntry<'posts'>>;
@@ -25,13 +25,13 @@ const { page } = Astro.props;
             <article>
               <div class="flex gap-2 items-center leading-5 text-sm">
                 <span class="flex items-center gap-1">
-                  <CalendarIcon class="my-0 size-4" />
-                  {formatDate(data.publishedDate)}
+                  <CalendarIcon className="my-0 size-4" />
+                  {formatDate(publishedDate.toString())}
                 </span>
                 {data?.lastUpdatedDate && (
                   <span class="flex items-center gap-1">
-                    <ReloadIcon class="my-0 size-4" />
-                    {formatDate(new Date(data.lastUpdatedDate))}
+                    <ReloadIcon className="my-0 size-4" />
+                    {formatDate(new Date(data.lastUpdatedDate).toString())}
                   </span>
                 )}
                 <Badge>{data.category || 'others'}</Badge>

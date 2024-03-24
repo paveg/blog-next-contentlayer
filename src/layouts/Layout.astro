@@ -3,6 +3,10 @@ import '@/styles/globals.css';
 type Props = {
 	title: string;
 	description: string;
+	path: string;
+	og: {
+		enabled: boolean;
+	};
 };
 
 const { title, description } = Astro.props;

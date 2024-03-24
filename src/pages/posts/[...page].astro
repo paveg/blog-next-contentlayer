@@ -28,6 +28,13 @@ const meta = await getEntry('site', 'meta');
 const { page } = Astro.props;
 ---
 
-<Layout title={meta.data.blog.title} description={meta.data.blog.description}>
+<Layout
+  title={meta.data.blog.title}
+  description={meta.data.blog.description}
+  path={page.url.current}
+  og={{
+    enabled: false,
+  }}
+>
   <Posts page={page} />
 </Layout>

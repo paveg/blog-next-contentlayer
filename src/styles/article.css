@@ -48,5 +48,9 @@ main {
         }
       }
     }
+
+    code:not(figure[data-rehype-pretty-code-figure] code) {
+      @apply px-0.5 my-0.5;
+    }
   }
 }

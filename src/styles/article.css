@@ -11,8 +11,27 @@ main {
     & p:not(blockquote > p) {
       @apply mt-6;
     }
+    & table {
+      @apply mt-6 block table-fixed border-collapse overflow-x-auto text-center;
+    }
+    & th,
+    & td {
+      @apply border-solid px-2 py-1;
+    }
+    & th {
+      @apply bg-muted hover:bg-secondary;
+    }
     & code {
       @apply font-mono;
+    }
+    & ul {
+      @apply list-disc;
+    }
+    & ol {
+      @apply list-decimal;
+    }
+    & li {
+      @apply ml-4 mt-3 list-inside leading-6;
     }
     & h1 {
       @apply mt-12;

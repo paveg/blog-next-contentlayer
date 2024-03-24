@@ -103,9 +103,9 @@
   blockquote {
     @apply relative my-6 px-6 text-muted-foreground;
 
-    &::before {
+    &:before {
+      @apply absolute left-0 h-full w-1 bg-muted-foreground;
       content: '';
-      @apply absolute left-0 h-full w-1 bg-secondary-foreground;
     }
   }
 }

@@ -1,0 +1,17 @@
+---
+type Props = {
+  href: string;
+  ['data-linkcard']?: string;
+};
+const props = Astro.props;
+---
+
+{
+  Object.hasOwn(props, 'data-linkcard') ? (
+    <a {...props}>LinkCard</a>
+  ) : (
+    <a {...props}>
+      <slot />
+    </a>
+  )
+}

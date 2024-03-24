@@ -22,7 +22,7 @@ export const LayoutFooter = () => {
             reserved.
           </p>
           <div>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" sChild>
               <Link
                 target="_blank"
                 rel="noopener noreferrer"

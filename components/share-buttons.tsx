@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+} from '../src/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
 type Props = {

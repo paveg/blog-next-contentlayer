@@ -1,0 +1,58 @@
+---
+import { getEntry } from 'astro:content';
+import Button from './AstroButtonLink.astro';
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  TwitterLogoIcon,
+} from '@radix-ui/react-icons';
+const meta = await getEntry('site', 'meta');
+const today = new Date();
+const startYear = 2023;
+const iconClass = 'h-5 w-5';
+---
+
+<footer>
+  <div class="p-4 lg:px-8">
+    <div
+      class="flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row"
+    >
+      <p class="text-xs text-muted-foreground md:text-sm">
+        &copy; {startYear}-{today.getFullYear()}
+        {meta.data.author.name}. All rights reserved.
+      </p>
+      <div>
+        <Button
+          variant="ghost"
+          size="icon"
+          href={meta.data.links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Link to GitHub"
+        >
+          <GitHubLogoIcon className={iconClass} />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          href={meta.data.links.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Link to X(Twitter) timeline"
+        >
+          <TwitterLogoIcon className={iconClass} />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          href={meta.data.links.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Link to Instagram profile"
+        >
+          <InstagramLogoIcon className={iconClass} />
+        </Button>
+      </div>
+    </div>
+  </div>
+</footer>

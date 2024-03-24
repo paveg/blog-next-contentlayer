@@ -1,4 +1,4 @@
-import { Badge } from './ui/badge';
+import { Badge } from '../src/components/ui/badge';
 import { ALL_CATEGORIES } from '@/utils/constants';
 
 type Props = {

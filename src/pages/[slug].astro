@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+import Layout from '@/layouts/Layout.astro';
+import Article from '../components/Article.astro';
+import AstroLink from '../components/AstroLink.astro';
+export type Props = {
+  page: CollectionEntry<'pages'>;
+};
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+
+  return pages.map((page) => {
+    const slug = page.slug;
+    return {
+      params: {
+        slug,
+      },
+      props: {
+        page,
+      },
+    };
+  });
+}
+const { page } = Astro.props;
+const { Content } = await page.render();
+export const components = {
+  h2: AstroLink,
+};
+---
+
+<Layout
+  title={page.data.title}
+  description={page.data.description}
+  path={`/${page.slug}`}
+  og={{
+    enabled: true,
+  }}
+>
+  <Article>
+    <Content components={components} />
+  </Article>
+</Layout>

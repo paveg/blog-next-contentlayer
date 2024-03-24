@@ -1,13 +1,14 @@
 import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
+import robotsTxt from 'astro-robots-txt';
+import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import { cfg } from './utils/constants';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutoHeadings from 'rehype-autolink-headings';
 import type { Element } from 'hast';
 import { h } from 'hastscript';
-import tailwindcssNesting from 'tailwindcss/nesting';
 import rehypePrettyCode from 'rehype-pretty-code';
 
 // https://astro.build/config
@@ -17,7 +18,10 @@ export default defineConfig({
     react(),
     tailwind({
       applyBaseStyles: false,
+      nesting: true,
     }),
+    sitemap(),
+    robotsTxt(),
   ],
   prefetch: {
     defaultStrategy: 'viewport',
@@ -25,16 +29,12 @@ export default defineConfig({
   },
   vite: {
     build: {
-      cssMinify: 'lightningcss',
-      css: {
-        transformer: 'lightningcss',
-        lightningcss: {
-          drafts: {
-            customMedia: true,
-          },
-        },
-        postcss: {
-          plugins: [tailwindcssNesting()],
+      cssMinify: 'lightningcss'
+    },
+    css: {
+      lightningcss: {
+        drafts: {
+          customMedia: true,
         },
       },
     },

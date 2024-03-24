@@ -6,7 +6,7 @@ import readingTime from 'reading-time';
 import remarkFootnotes from 'remark-footnotes';
 import remarkGfm from 'remark-gfm';
 import remarkUnwrapImages from 'remark-unwrap-images';
-import { RemarkLinkCard } from './lib/remark-link-card';
+import { RemarkLinkCard } from './src/lib/remark-link-card';
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {

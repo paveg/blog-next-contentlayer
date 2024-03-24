@@ -3,8 +3,6 @@ import * as React from 'react';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
 
-
-
 export function ModeToggle() {
   const [theme, setThemeState] = React.useState<'light' | 'dark' | 'system'>(
     'light'

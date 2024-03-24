@@ -27,12 +27,11 @@ export const RemarkLinkCard: Plugin<void[], Root> = () => {
       child.data = {
         ...child.data,
         // TODO: fix
-        // hProperties: {
-        //   ...(child.data?.hProperties ?? {}),
-        //   dataLinkcard: true,
-        // },
+        hProperties: {
+          ...(child.data?.hProperties ?? {}),
+          dataLinkcard: true,
+        },
       };
-      console.log(child);
     });
   };
 };

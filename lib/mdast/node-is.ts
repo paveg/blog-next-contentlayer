@@ -1,5 +1,9 @@
-import type { Paragraph, Link, Text } from 'mdast';
+import type { Paragraph, Link as MdastLink, Text, LinkData } from 'mdast';
 import type { Node, Literal, Parent } from 'unist';
+
+export interface Link extends MdastLink {
+  data?: LinkData & { hProperties?: { dataLinkcard?: boolean } };
+}
 
 function isObject(target: unknown): target is { [key: string]: unknown } {
   return typeof target === 'object' && target !== null;

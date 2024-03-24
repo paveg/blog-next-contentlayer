@@ -1,0 +1,48 @@
+---
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationPrevious,
+  PaginationItem,
+  PaginationNext,
+  PaginationEllipsis,
+  PaginationLink,
+} from '@/components/ui/pagination';
+
+export type Props = {
+  page?: Page<CollectionEntry<'posts'>>;
+  topPath?: string;
+};
+
+const { page, topPath } = Astro.props;
+---
+
+<nav class="mt-10">
+  <Pagination>
+    <PaginationContent>
+      {
+        page?.url?.prev && (
+          <PaginationItem>
+            <PaginationPrevious size="sm" isActive href={page?.url?.prev} />
+          </PaginationItem>
+        )
+      }
+      {
+        page?.url?.prev && page?.url?.next && (
+          <PaginationItem>
+            <PaginationEllipsis size="sm" />
+          </PaginationItem>
+        )
+      }
+      {
+        page?.url.next && (
+          <PaginationItem>
+            <PaginationNext size="sm" isActive href={page?.url.next} />
+          </PaginationItem>
+        )
+      }
+    </PaginationContent>
+  </Pagination>
+</nav>

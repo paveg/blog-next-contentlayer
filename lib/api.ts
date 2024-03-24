@@ -1,4 +1,4 @@
-import fetchSiteMetadata from "fetch-site-metadata"
+import fetchSiteMetadata from 'fetch-site-metadata';
 
 const siteMetadata = async (url: string) => {
   const { description, image, title } = await fetchSiteMetadata(url, {
@@ -6,20 +6,20 @@ const siteMetadata = async (url: string) => {
   }).catch(() => ({
     description: 'Page not found',
     image: {
-      src: undefined
+      src: undefined,
     },
-    title: "Not found"
-  }))
-  return { description, image, title }
-}
+    title: 'Not found',
+  }));
+  return { description, image, title };
+};
 
 const siteImage = async (src: string) => {
   const image = await fetch(src).then((res) => res.arrayBuffer());
   if (!image) {
-    return undefined
+    return undefined;
   }
-  return image
-}
+  return image;
+};
 
 export const getLinkCard = async (href: string) => {
   const { description, image, title } = await siteMetadata(href);
@@ -30,6 +30,6 @@ export const getLinkCard = async (href: string) => {
     image: {
       src: og,
     },
-    title
-  }
-}
+    title,
+  };
+};

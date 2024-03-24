@@ -2,9 +2,10 @@
 import '@/styles/globals.css';
 type Props = {
 	title: string;
+	description: string;
 };
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 ---
@@ -15,12 +16,15 @@ import Footer from '@/components/Footer.astro';
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width initial-scale=1" />
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="48x48" />
+		<meta name="description" content={description} />
 		<title>{title}</title>
 	</head>
 	<body class="min-h-screen bg-white font-sans text-slate-900">
-		<div class="mx-auto max-w-2xl px-4 md:px-2 py-10 lg:px-0">
+		<div class="mx-auto max-w-2xl px-4 md:px-2 py-6 lg:px-0">
 			<Header />
-			<slot />
+			<main>
+				<slot />
+			</main>
 			<Footer />
 		</div>
 	</body>

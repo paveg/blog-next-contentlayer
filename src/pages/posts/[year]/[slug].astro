@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+import Layout from '@/layouts/Layout.astro';
+import Article from '@/components/Article.astro';
+
+export type Props = {
+  post: CollectionEntry<'posts'>;
+};
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  return posts.map((post) => {
+    const [year, slug] = post.slug.split('/');
+    return {
+      params: {
+        slug,
+        year,
+      },
+      props: {
+        post,
+      },
+    };
+  });
+}
+
+const { Content } = await Astro.props.post.render();
+
+const { post } = Astro.props;
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  path={`/${post.collection}/${post.slug}`}
+>
+  <Article>
+    <Content />
+  </Article>
+</Layout>

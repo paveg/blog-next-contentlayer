@@ -1,6 +1,6 @@
-import mdx from '@astrojs/mdx'
-import tailwind from '@astrojs/tailwind'
-import react from '@astrojs/react'
+import mdx from '@astrojs/mdx';
+import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react';
 import { defineConfig } from 'astro/config';
 import { cfg } from './utils/constants';
 
@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     tailwind({
       applyBaseStyles: false,
-    })
+    }),
   ],
-  site: cfg.siteURL
+  site: cfg.siteURL,
 });

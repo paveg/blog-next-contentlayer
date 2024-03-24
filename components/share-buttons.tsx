@@ -21,14 +21,14 @@ export const ShareButtons = ({ url, title, hashtags }: Props) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon">
-            <Share2Icon className="h-4 w-4" />
+            <Share2Icon className="size-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>
             <TwitterShareButton title={title} url={url} hashtags={hashtags}>
               <div className="flex items-center gap-4">
-                <TwitterLogoIcon className="h-4 w-4" />
+                <TwitterLogoIcon className="size-4" />
                 <span>Twitter</span>
               </div>
             </TwitterShareButton>

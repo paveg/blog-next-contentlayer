@@ -1,0 +1,27 @@
+---
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+
+export type Props = {
+  page: Page<CollectionEntry<'posts'>>;
+};
+
+const { page } = Astro.props;
+---
+
+<>
+  <ul>
+    {
+      page.data.map((post) => {
+        const { slug, data, collection } = post;
+        return (
+          <li>
+            <a href={`/${collection}/${slug}`}>
+              <h2>{data.title}</h2>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</>

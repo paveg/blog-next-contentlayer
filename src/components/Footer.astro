@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import Button from './AstroButtonLink.astro';
+import ButtonLink from './ButtonLink.astro';
 import {
   GitHubLogoIcon,
   InstagramLogoIcon,
@@ -22,7 +22,7 @@ const iconClass = 'h-5 w-5';
         {meta.data.author.name}. All rights reserved.
       </p>
       <div>
-        <Button
+        <ButtonLink
           variant="ghost"
           size="icon"
           href={meta.data.links.github}
@@ -31,8 +31,8 @@ const iconClass = 'h-5 w-5';
           aria-label="Link to GitHub"
         >
           <GitHubLogoIcon className={iconClass} />
-        </Button>
-        <Button
+        </ButtonLink>
+        <ButtonLink
           variant="ghost"
           size="icon"
           href={meta.data.links.twitter}
@@ -41,8 +41,8 @@ const iconClass = 'h-5 w-5';
           aria-label="Link to X(Twitter) timeline"
         >
           <TwitterLogoIcon className={iconClass} />
-        </Button>
-        <Button
+        </ButtonLink>
+        <ButtonLink
           variant="ghost"
           size="icon"
           href={meta.data.links.instagram}
@@ -51,7 +51,7 @@ const iconClass = 'h-5 w-5';
           aria-label="Link to Instagram profile"
         >
           <InstagramLogoIcon className={iconClass} />
-        </Button>
+        </ButtonLink>
       </div>
     </div>
   </div>

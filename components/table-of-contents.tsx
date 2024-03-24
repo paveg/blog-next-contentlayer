@@ -82,7 +82,7 @@ export const TableOfContents = ({ source }: Props) => {
   return (
     <div className="mt-10">
       <div className="mb-3 flex items-center gap-1.5">
-        <ReaderIcon className="h-4 w-4" />
+        <ReaderIcon className="size-4" />
         <span className="text-lg font-semibold transition-colors">Outline</span>
       </div>
       <div className="flex flex-col items-start justify-start">

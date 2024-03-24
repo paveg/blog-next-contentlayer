@@ -27,10 +27,10 @@ const CustomHeading = ({
       <span className="mr-2">{children}</span>
       <a
         href={id && `#${id}`}
-        className="inline-flex h-6 w-6 items-center justify-center rounded-md text-lg no-underline opacity-0 shadow-sm ring-1 transition-all hover:shadow group-hover:opacity-100"
+        className="inline-flex size-6 items-center justify-center rounded-md text-lg no-underline opacity-0 shadow-sm ring-1 transition-all hover:shadow group-hover:opacity-100"
         aria-label="Anchor"
       >
-        <Link2Icon className="h-4 w-4" />
+        <Link2Icon className="size-4" />
       </a>
     </ComponentType>
   );

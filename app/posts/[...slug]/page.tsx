@@ -104,7 +104,7 @@ export default async function PostPage({ params }: PostProps) {
 
   const fullUrl = cfg.siteURL + post.slug;
   return (
-    <article className="prose prose-slate py-6 transition-colors dark:prose-invert lg:prose-lg">
+    <article className="prose prose-slate dark:prose-invert lg:prose-lg py-6 transition-colors">
       <ArticleJsonLd
         useAppDir={true}
         url={fullUrl}
@@ -128,12 +128,12 @@ export default async function PostPage({ params }: PostProps) {
         className="mb-2 flex items-center justify-start gap-2 text-sm"
       >
         <span className="flex items-center gap-1 text-slate-700 dark:text-slate-200">
-          <CalendarIcon className="my-0 h-4 w-4" />
+          <CalendarIcon className="my-0 size-4" />
           {formatDate(post.publishedDate)}
         </span>
         {post.lastUpdatedDate && (
           <span className="flex items-center gap-1 text-slate-700 dark:text-slate-200">
-            <ReloadIcon className="my-0 h-4 w-4" />
+            <ReloadIcon className="my-0 size-4" />
             {formatDate(post.lastUpdatedDate)}
           </span>
         )}
@@ -146,7 +146,7 @@ export default async function PostPage({ params }: PostProps) {
         </div>
         {post.readingTime && (
           <div className="flex items-center justify-end gap-1 text-sm">
-            <ClockIcon className="my-0 h-4 w-4" />
+            <ClockIcon className="my-0 size-4" />
             <span className="text-slate-700 dark:text-slate-200">
               {post.readingTime.text}
             </span>

@@ -10,5 +10,16 @@
   "rules": {
     "import/order": "error",
     "unused-imports/no-unused-imports": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensitions": [".astro"]
+      },
+      "rules": {}
+    }
+  ]
 }

@@ -5,7 +5,7 @@ main {
     & li {
       & a {
         /* TODO: Implement CSS when visited and hover */
-        @apply my-1 text-link-700 underline decoration-2 underline-offset-4;
+        @apply my-1 px-1 text-link-600 decoration-2 underline-offset-4 visited:text-link-800 hover:text-link-800 hover:underline;
       }
     }
     & p:not(blockquote > p) {

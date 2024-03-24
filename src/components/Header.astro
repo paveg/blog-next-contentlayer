@@ -1,5 +1,6 @@
 ---
 import ButtonLink from '@/components/ButtonLink.astro';
+import { ModeToggle } from '@/components/mode-toggle';
 ---
 
 <header>
@@ -11,6 +12,7 @@ import ButtonLink from '@/components/ButtonLink.astro';
       <ButtonLink variant="ghost" size="sm" href="/privacy"
         >Privacy Policy</ButtonLink
       >
+      <ModeToggle client:load />
     </nav>
   </div>
 </header>

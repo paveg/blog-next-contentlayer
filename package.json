@@ -73,6 +73,7 @@
     "mdast-util-to-hast": "^13.1.0",
     "postcss-nesting": "^12.1.0",
     "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.12",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
@@ -83,6 +84,7 @@
     "remark-footnotes": "^4.0.1",
     "remark-gfm": "^3.0.1",
     "remark-unwrap-images": "^4.0.0",
+    "shiki": "^1.2.0",
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0"
   }

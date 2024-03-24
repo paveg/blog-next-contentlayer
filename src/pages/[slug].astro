@@ -3,8 +3,9 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 import Layout from '@/layouts/Layout.astro';
-import Article from '../components/Article.astro';
-import AstroLink from '../components/AstroLink.astro';
+import Article from '@/components/Article.astro';
+import AstroLink from '@/components/AstroLink.astro';
+import AstroFigure from '@/components/AstroFigure.astro';
 export type Props = {
   page: CollectionEntry<'pages'>;
 };
@@ -26,7 +27,9 @@ export async function getStaticPaths() {
 }
 const { page } = Astro.props;
 const { Content } = await page.render();
-export const components = {};
+export const components = {
+  figure: AstroFigure,
+};
 ---
 
 <Layout
@@ -38,7 +41,6 @@ export const components = {};
   }}
 >
   <Article>
-    a
     <Content components={components} />
   </Article>
 </Layout>

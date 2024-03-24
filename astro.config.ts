@@ -8,8 +8,7 @@ import rehypeAutoHeadings from 'rehype-autolink-headings';
 import type { Element } from 'hast';
 import { h } from 'hastscript';
 import tailwindcssNesting from 'tailwindcss/nesting';
-import rehypePrettyCode from "rehype-pretty-code";
-
+import rehypePrettyCode from 'rehype-pretty-code';
 
 // https://astro.build/config
 export default defineConfig({
@@ -61,14 +60,15 @@ export default defineConfig({
         },
       ],
       [
-        rehypePrettyCode, {
+        rehypePrettyCode,
+        {
           theme: {
             light: 'github-light-default',
-            dark: 'github-dark-dimmed'
+            dark: 'github-dark-dimmed',
           },
           grid: false,
-          defaultLang: 'plaintext'
-        }
+          defaultLang: 'plaintext',
+        },
       ],
     ],
   },

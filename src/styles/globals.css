@@ -71,7 +71,7 @@
     @apply border-border;
   }
   body {
-    @apply mx-auto flex min-h-screen max-w-3xl flex-col justify-between bg-background px-4 py-2 font-sans leading-7 text-foreground md:py-4;
+    @apply mx-auto min-h-screen max-w-3xl bg-background px-4 py-2 font-sans leading-7 text-foreground md:py-4;
   }
 
   h1,

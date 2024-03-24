@@ -50,7 +50,7 @@ main {
     }
 
     code:not(figure[data-rehype-pretty-code-figure] code) {
-      @apply px-0.5 my-0.5;
+      @apply my-0.5 px-0.5;
     }
   }
 }

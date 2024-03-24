@@ -11,6 +11,9 @@ import type { Element } from 'hast';
 import { h } from 'hastscript';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { remarkReadingTime } from './src/lib/remark-reading-time.mjs';
+import prefetch from '@astrojs/prefetch';
+
+import image from '@astrojs/image';
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,6 +26,8 @@ export default defineConfig({
     }),
     sitemap(),
     robotsTxt(),
+    prefetch(),
+    image(),
   ],
   prefetch: {
     defaultStrategy: 'viewport',
